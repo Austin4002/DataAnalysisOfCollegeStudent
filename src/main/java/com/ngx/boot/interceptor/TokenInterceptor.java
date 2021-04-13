@@ -18,6 +18,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if(request.getMethod().equals("OPTIONS")){
             response.setStatus(HttpServletResponse.SC_OK);
+            log.info("当前为options请求");
             return true;
         }
         response.setCharacterEncoding("utf-8");
@@ -26,21 +27,17 @@ public class TokenInterceptor implements HandlerInterceptor {
         if(token != null){
             boolean result = TokenUtil.verify(token);
             if(result){
-               log.debug("通过拦截器");
+                log.info("通过拦截器");
                 return true;
             }
         }
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         try{
-            Result result = new Result<>(401,"token verify fail");
-//            Gson方式
-//            response.getWriter().write(new Gson().toJson(result));
-//            jackson方式
+            Result<Object> result = new Result<>(401,"token verify fail");
             String res = new ObjectMapper().writeValueAsString(result);
             response.getWriter().write(res);
-
-            log.debug("认证失败，未通过拦截器");
+            log.info("认证失败，未通过拦截器");
 
         }catch (Exception e){
             e.printStackTrace();

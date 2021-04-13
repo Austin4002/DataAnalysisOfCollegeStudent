@@ -18,4 +18,5 @@ public class Result<T> {
         this.code = code;
         this.msg = msg;
     }
+
 }
