@@ -6,6 +6,7 @@ import com.ngx.boot.mapper.AdminMapper;
 import com.ngx.boot.service.AdminService;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService {
     

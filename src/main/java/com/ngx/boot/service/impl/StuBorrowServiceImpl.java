@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StuBorrowServiceImpl extends ServiceImpl<StuBorrowMapper, StuBorrow> implements StuBorrowService {
+
 }

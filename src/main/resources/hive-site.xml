@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+       <name>hive.metastore.uris</name>
+     　<value>thrift://spark1:9083</value>     
+   　　<description>Thrift URI for the remote metastore. Used by metastore client to connect to remote metastore.</description>
+    </property>
+    <property>
+        <name>hive.metastore.local</name>      //刚刚创建的数据库名称
+        <value>true</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+         <value>jdbc:mysql://spark1:3306/hive?characterEncoding=UTF-8</value>      //要连接的节点的locolhost
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>com.mysql.jdbc.Driver</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value>hadoop</value>			//用户名
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value>hadoop</value>			//密码
+    </property>
+</configuration>
+
