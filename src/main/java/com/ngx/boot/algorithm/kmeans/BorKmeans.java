@@ -27,7 +27,7 @@ public class BorKmeans {
     static double[][] new_center = new double[nums][2];    //计算出来的新中心点
 
 
-    public ArrayList<Double> bormeans(String filepath) throws Exception {
+    public static ArrayList<Double> bormeans(String filepath,String filepath2) throws Exception {
 
         // 从文件中读出中心点，并且放入center数组中
         ArrayList<String> arrayList = new ArrayList<String>();
@@ -57,7 +57,8 @@ public class BorKmeans {
         //System.out.println("center+++" + center[3][1]);
         SparkConf conf = new SparkConf().setAppName("kmeans").setMaster("local[*]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        JavaRDD<String> datas = jsc.textFile("hdfs://192.168.195.11:9000/data/kdata2.dat");     //从hdfs上读取data
+        //JavaRDD<String> datas = jsc.textFile("hdfs://192.168.195.11:9000/data/kdata2.dat");     //从hdfs上读取data
+        JavaRDD<String> datas = jsc.textFile(filepath2);
         ArrayList<Double> fin = new ArrayList<>();
 
         while(true) {
@@ -138,7 +139,7 @@ public class BorKmeans {
             if(distance == 0.0) {
                 //finished
                 for(int j = 0;j<nums;j++) {
-                    System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
+                    //System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
                     fin.add(center[j][1]);
                 }
                 break;

@@ -5,4 +5,7 @@ import com.ngx.boot.bean.Admin;
 
 public interface AdminService extends IService<Admin> {
 
+
+
+
 }

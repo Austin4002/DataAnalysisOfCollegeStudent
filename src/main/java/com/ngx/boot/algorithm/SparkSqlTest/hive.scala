@@ -1,14 +1,19 @@
 package com.ngx.boot.algorithm.SparkSqlTest
 
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.SparkSession
+import java.util
+import java.lang
+
+import org.apache.spark.{SparkConf, SparkContext, sql}
+import org.apache.spark.sql.{Row, SQLContext, SparkSession}
+import org.joda.time.LocalDate
+import org.joda.time.format.DateTimeFormatter
 import shapeless.ops.nat.ToInt
 
 import scala.concurrent.duration.DurationConversions.fromNowConvert.R
 
 object hive{
 
-  def main(args: Array[String]): Unit = {
+  def main(): Row = {
 
 
 
@@ -30,12 +35,19 @@ object hive{
     //spark.sql("select count(stu_sex) from stu_info where stu_sex='男'").show()
 
 
-    val man = "select count(stu_sex) from stu_info where stu_sex='男'"
+    val man = "select stu_name from stu_info"
     val woman = "select count(stu_sex) from stu_info where stu_sex='女'"
+    //SQLContext st = new SQLContext(spark)
+
+    val st = spark.sql(man).collect()
+    println("arr(0) is " + st(0) + " arr(2) is " + st(1) + " arr(4) is " + st(2))
+
+    st(0)
 
 
-    spark.sql(man).show(1)
-    val womanrdd = spark.sql(woman).toString()
+
+
+
 
 
     //scalatest.getDFFromMysql(spark,man)

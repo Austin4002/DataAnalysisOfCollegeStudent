@@ -1,8 +1,5 @@
 package com.ngx.boot.algorithm.SparkSqlTest;
 
-import lombok.val;
-import org.apache.spark.sql.SparkSession;
-
 /**
  * @author : 朱坤
  * @date :
@@ -18,6 +15,9 @@ public class test {
 
       //  System.out.println(scalatest.getDFFromMysql("(select * from analysisdata.stu_info) tmp"));
 
+        String s = hive.main().toString();
+
+        System.out.println();
 
 
     }
