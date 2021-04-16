@@ -382,5 +382,9 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-http:9.4.38.v20210224" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-io:9.4.38.v20210224" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-util-ajax:9.4.38.v20210224" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.sqoop:sqoop-client:1.99.7" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.sqoop:sqoop-common:1.99.7" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
   </component>
 </module>

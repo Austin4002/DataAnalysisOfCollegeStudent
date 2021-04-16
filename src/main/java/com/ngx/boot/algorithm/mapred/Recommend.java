@@ -11,22 +11,25 @@ public class Recommend {
 	
     public static final String HDFS = "hdfs://192.168.195.11:9000";
     public static final Pattern DELIMITER = Pattern.compile("[\t,]");
-    public static void main(String[] args) {
-		
-    	Recommend rm = new Recommend(); 
-    	try {
-			rm.mapred();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-	}
 
-    public void mapred() throws Exception {
+//    public static void main(String[] args) {
+//
+//    	Recommend rm = new Recommend();
+//    	try {
+//			rm.mapred();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//	}
+
+   // public void mapred() throws Exception {
+        public void mapred(String fpath) throws Exception {
     	
         Map<String, String> path = new HashMap<String,String>();
-        path.put("data", "F:/file/small.csv");
+        //path.put("data", "src/main/resources/small2.txt");
+        path.put("data", fpath);
         path.put("Step1Input", HDFS + "/data/input");
         path.put("Step1Output", path.get("Step1Input") + "/step1");
         path.put("Step2Input", path.get("Step1Output"));

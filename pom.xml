@@ -226,6 +226,11 @@
             <version>8.1.8</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+                <groupId>org.apache.sqoop</groupId>
+                <artifactId>sqoop-client</artifactId>
+                <version>1.99.7</version>
+        </dependency>
 
     </dependencies>
 

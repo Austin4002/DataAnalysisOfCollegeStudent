@@ -1,0 +1,26 @@
+2021-04-16 09:01:38,884 [appclient-registration-retry-thread] ERROR o.a.s.s.c.StandaloneSchedulerBackend - Application has been killed. Reason: All masters are unresponsive! Giving up.
+2021-04-16 09:01:39,129 [main] ERROR org.apache.spark.SparkContext - Error initializing SparkContext.
+java.lang.NullPointerException: null
+	at org.apache.spark.storage.BlockManagerMaster.registerBlockManager(BlockManagerMaster.scala:64)
+	at org.apache.spark.storage.BlockManager.initialize(BlockManager.scala:227)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:518)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2516)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$6.apply(SparkSession.scala:918)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$6.apply(SparkSession.scala:910)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:910)
+	at com.ngx.boot.algorithm.SparkSqlTest.scalatest$.getDFFromMysql(scalatest.scala:26)
+	at com.ngx.boot.algorithm.SparkSqlTest.scalatest.getDFFromMysql(scalatest.scala)
+	at com.ngx.boot.algorithm.SparkSqlTest.test.main(test.java:18)
+2021-04-16 09:04:09,683 [appclient-registration-retry-thread] ERROR o.a.s.s.c.StandaloneSchedulerBackend - Application has been killed. Reason: All masters are unresponsive! Giving up.
+2021-04-16 09:04:10,245 [main] ERROR org.apache.spark.SparkContext - Error initializing SparkContext.
+java.lang.NullPointerException: null
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:567)
+	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2516)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$6.apply(SparkSession.scala:918)
+	at org.apache.spark.sql.SparkSession$Builder$$anonfun$6.apply(SparkSession.scala:910)
+	at scala.Option.getOrElse(Option.scala:121)
+	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:910)
+	at com.ngx.boot.algorithm.SparkSqlTest.scalatest$.getDFFromMysql(scalatest.scala:26)
+	at com.ngx.boot.algorithm.SparkSqlTest.scalatest.getDFFromMysql(scalatest.scala)
+	at com.ngx.boot.algorithm.SparkSqlTest.test.main(test.java:18)

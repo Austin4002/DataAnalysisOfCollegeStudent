@@ -1,4 +1,4 @@
-package com.ngx.boot.algorithm.SparkSqlTest;
+package com.ngx.boot.algorithm.mapred;
 
 /**
  * @author : 朱坤
@@ -17,39 +17,34 @@ import org.apache.hadoop.fs.Path;
 
 public class ReadHDFS {
 
-    public static ArrayList<String> getStringByTXT(String txtFilePath, Configuration conf) throws Exception{
+    public static ArrayList<String> getStringByTXT() throws Exception{
 
+        // TODO Auto-generated method stub
+        Configuration conf = new Configuration();
         StringBuffer buffer = new StringBuffer();
         FSDataInputStream fsr = null;
         BufferedReader bufferedReader = null;
         String lineTxt = null;
 
-            FileSystem fs = FileSystem.get(URI.create(txtFilePath),conf);
-            fsr = fs.open(new Path(txtFilePath));
+            FileSystem fs = FileSystem.get(URI.create("hdfs://192.168.195.11:9000/data/input/step4/part-00000"),conf);
+            fsr = fs.open(new Path("hdfs://192.168.195.11:9000/data/input/step4/part-00000"));
             bufferedReader = new BufferedReader(new InputStreamReader(fsr));
             ArrayList<String> text = new ArrayList<>();
             while ((lineTxt = bufferedReader.readLine()) != null)
             {
-
                 text.add(lineTxt);
-
-//                if(lineTxt.split("\t")[0].trim().equals("1,101,44.0")){
-//                    return lineTxt;
-//                }
-
             }
 
         return text;
-
     }
-    /**
-     * @param args
-     */
+
+
+
     public static void main(String[] args) throws Exception {
         // TODO Auto-generated method stub
         Configuration conf = new Configuration();
         String txtFilePath = "hdfs://192.168.195.11:9000/data/input/step4/part-00000";
-        ArrayList<String>  mbline = getStringByTXT(txtFilePath, conf);
+        ArrayList<String>  mbline = getStringByTXT();
         for (int i=0;i<mbline.size();i++){
 
             System.out.println(mbline.get(i));

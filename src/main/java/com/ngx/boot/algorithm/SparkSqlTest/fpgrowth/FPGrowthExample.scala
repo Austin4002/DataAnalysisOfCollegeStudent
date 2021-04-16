@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package com.ngx.boot.algorithm.fpgrowth
+package com.ngx.boot.algorithm.SparkSqlTest.fpgrowth
 
 import org.apache.spark.mllib.fpm.FPGrowth
 import org.apache.spark.{SparkConf, SparkContext}
