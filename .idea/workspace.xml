@@ -1,31 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99205180-59b1-4174-b2d3-4c8ed4ca60ab" name="Default Changelist" comment="初始化项目">
-      <change afterPath="$PROJECT_DIR$/logInfo/app.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logInfo/app_2021-04-13.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/daocs.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/HiveJDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/Spark03_TopN.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/SqoopDataModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/scalatest.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/kmeans/BehKmeans.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/kmeans/BorKmeans.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/kmeans/ConsumeKmeans.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/kmeans/ScoreKmeans.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/message.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/small.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/small2.txt" afterDir="false" />
+    <list default="true" id="99205180-59b1-4174-b2d3-4c8ed4ca60ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataAnalysisOfCollegeStudent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DataAnalysisOfCollegeStudent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/ReadHDFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/mapred/ReadHDFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/hive.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/hive.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/fpgrowth/FPGrowthExample.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/fpgrowth/FPGrowthExample.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/fpgrowth/SimpleFPGrowth.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/fpgrowth/SimpleFPGrowth.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/kmeans/kmeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/SparkSqlTest/kmeans.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/mapred/Recommend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm/mapred/Recommend.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/ngx/boot/algorithm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -291,7 +268,7 @@
       <workItem from="1618318450435" duration="1389000" />
       <workItem from="1618363501914" duration="9820000" />
       <workItem from="1618445515599" duration="17791000" />
-      <workItem from="1618533495283" duration="7639000" />
+      <workItem from="1618533495283" duration="7914000" />
     </task>
     <task id="LOCAL-00001" summary="初始化项目">
       <created>1618112902570</created>
@@ -314,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618365393982</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="4.16算法完成">
+      <created>1618546221135</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618546221135</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,7 +309,8 @@
     <MESSAGE value="- 完成service、mapper接口&#10;- 完成service实现类" />
     <MESSAGE value="初始化项目" />
     <MESSAGE value="项目4.14" />
-    <option name="LAST_COMMIT_MESSAGE" value="项目4.14" />
+    <MESSAGE value="4.16算法完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.16算法完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="690" y="275" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1618467077062">
@@ -348,11 +333,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="594" y="445" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618476207885" />
-    <state x="308" y="133" key="CommitChangelistDialog2" timestamp="1618365391773">
+    <state x="308" y="133" key="CommitChangelistDialog2" timestamp="1618546219139">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="308" y="133" key="CommitChangelistDialog2/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1618299607641" />
-    <state x="308" y="133" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618365391773" />
+    <state x="308" y="133" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618546219139" />
     <state x="718" y="263" key="FileChooserDialogImpl" timestamp="1618468862851">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -406,19 +391,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618315605929" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1618546137586">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1618546231088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="254" key="Vcs.Push.Dialog.v2/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1618299625824" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618546137586" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618546231088" />
     <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1618533496100">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="344" key="com.intellij.ide.util.TipDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618533496100" />
-    <state x="699" y="313" key="git4idea.merge.GitPullDialog" timestamp="1618112972281">
+    <state x="699" y="313" key="git4idea.merge.GitPullDialog" timestamp="1618546365786">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="699" y="313" key="git4idea.merge.GitPullDialog/-1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1618112972281" />
+    <state x="699" y="313" key="git4idea.merge.GitPullDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1618546365786" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618295808327">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
