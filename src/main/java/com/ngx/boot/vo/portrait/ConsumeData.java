@@ -11,6 +11,6 @@ public class ConsumeData {
 
     private String name;
 
-    private Integer star;
+    private double star;
 
 }

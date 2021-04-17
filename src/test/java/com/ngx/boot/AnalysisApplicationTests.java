@@ -1,7 +1,11 @@
 package com.ngx.boot;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ngx.boot.algorithm.kmeans.BorKmeans;
+import com.ngx.boot.bean.BookInfo;
+import com.ngx.boot.service.BookInfoService;
 import com.ngx.boot.service.StuBorrowService;
+import com.ngx.boot.service.StuCheckService;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -11,8 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 @SpringBootTest
 class AnalysisApplicationTests {
@@ -22,10 +25,35 @@ class AnalysisApplicationTests {
 
     @Autowired
     private StuBorrowService stuBorrowService;
+    @Autowired
+    private BookInfoService bookInfoService;
+    @Autowired
+    private StuCheckService stuCheckService;
+
 
 //    @Autowired
 //    private RedisTemplate redisTemplate;
 
+    @Test
+    public void testWrapper(){
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.select("DISTINCT book_type");
+
+        List<BookInfo> list = bookInfoService.list(wrapper);
+
+        list.forEach(item->{
+            String bookType = item.getBookType();
+            QueryWrapper queryWrapper = new QueryWrapper();
+            Map<String,String> rvMap = new HashMap<>();
+            rvMap.put("stu_no","201919201");
+            rvMap.put("book_type",bookType);
+            queryWrapper.allEq(rvMap);
+
+            int count = stuBorrowService.count(queryWrapper);
+            System.out.println(bookType+":"+count);
+        });
+
+    }
 
     @Test
     public void getRandomByBorTime() throws Exception {
@@ -77,10 +105,18 @@ class AnalysisApplicationTests {
 
 //        我们将使用常量池，真垃圾，一下代码是葛云翔写的
 
-
-
-
 //        return null;
+    }
+
+    @Test
+    public void testMaxAll(){
+        List<Integer> maxTime = stuCheckService.getAllMaxTime();
+        maxTime.forEach(System.out::println);
+    }
+
+    @Test
+    public void testTimeCount(){
+        double avgTimeCount = stuCheckService.getAvgTimeCount("201919222");
     }
 
 }

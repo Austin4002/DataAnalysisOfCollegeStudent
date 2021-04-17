@@ -15,6 +15,8 @@ public class AnalysisApplication {
 
 
         SpringApplication.run(AnalysisApplication.class, args);
+
+
     }
 
 }

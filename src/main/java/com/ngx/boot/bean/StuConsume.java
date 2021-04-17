@@ -19,7 +19,7 @@ public class StuConsume {
     // 消费编号
     private Integer conNo;
     // 消费金额
-    private Double conMoney;
+    private double conMoney;
     // 消费餐厅号
     private String conRestaurant;
     // 消费窗口号

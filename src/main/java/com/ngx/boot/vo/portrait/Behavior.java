@@ -1,5 +1,6 @@
 package com.ngx.boot.vo.portrait;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @date :
  */
 @Data
+@AllArgsConstructor
 public class Behavior {
     private List<BehaviorData> data;
 }

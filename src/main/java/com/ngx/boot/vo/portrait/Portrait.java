@@ -27,10 +27,8 @@ public class Portrait {
     // 学生画像
     private List<StuWord> word;
     // 学生行为
-    private List<StuBehavior> stuBehavior;
+    private StuBehavior stuBehavior;
     // 图书借阅
     private StuBook stuBook;
-    // 每月进入图书馆频次
-    private Integer[] monthFre;
 
 }

@@ -1,4 +1,4 @@
-package com.ngx.boot.vo.portrait;
+package com.ngx.boot.vo.library;
 
 import lombok.Data;
 
@@ -7,8 +7,11 @@ import lombok.Data;
  * @date :
  */
 @Data
-public class InLibraryTime {
-    private double over;
+public class Frequency {
 
+    private String type;
     private double value;
+
+
+
 }

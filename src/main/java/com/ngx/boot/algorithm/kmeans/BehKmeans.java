@@ -27,7 +27,7 @@ public class BehKmeans {
     static double[][] new_center = new double[nums][2];    //计算出来的新中心点
 
 
-    public ArrayList<Double> behmeans(String filepath) throws Exception {
+    public static ArrayList<Double> behmeans(String filepath,String filepath2) throws Exception {
 
         ArrayList<String> arrayList = new ArrayList<String>();
         File file = new File(filepath);
@@ -132,7 +132,7 @@ public class BehKmeans {
             if(distance == 0.0) {
                 //finished
                 for(int j = 0;j<nums;j++) {
-                    System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
+                    //System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
                     fin.add(center[j][1]);
                 }
                 break;

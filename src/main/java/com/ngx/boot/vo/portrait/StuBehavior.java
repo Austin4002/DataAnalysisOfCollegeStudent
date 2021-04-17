@@ -1,5 +1,6 @@
 package com.ngx.boot.vo.portrait;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Data;
  * @date :
  */
 @Data
+@AllArgsConstructor
 public class StuBehavior {
 
     private Consume consume;

@@ -1,4 +1,4 @@
-package com.ngx.boot.vo.portrait;
+package com.ngx.boot.vo.restaurant;
 
 import lombok.Data;
 
@@ -6,9 +6,14 @@ import lombok.Data;
  * @author : 朱坤
  * @date :
  */
+
 @Data
-public class InLibraryTime {
-    private double over;
+public class ConType {
+
+    private String type;
 
     private double value;
+
+
+
 }

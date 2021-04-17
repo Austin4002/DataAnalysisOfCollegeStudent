@@ -1,6 +1,5 @@
 package com.ngx.boot.algorithm.kmeans;
 
-import jdk.nashorn.internal.runtime.ECMAException;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -9,7 +8,10 @@ import org.apache.spark.api.java.function.PairFunction;
 import org.apache.spark.api.java.function.VoidFunction;
 import scala.Tuple2;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +27,7 @@ public class ConsumeKmeans {
     static double[][] new_center = new double[nums][2];    //计算出来的新中心点
 
 
-    public ArrayList<Double> conmeans(String filepath) throws Exception {
+    public static ArrayList<Double> conmeans(String filepath, String filepath2) throws Exception {
 
         // 从文件中读出中心点，并且放入center数组中
         ArrayList<String> arrayList = new ArrayList<String>();
@@ -55,7 +57,7 @@ public class ConsumeKmeans {
         //System.out.println("center+++" + center[3][1]);
         SparkConf conf = new SparkConf().setAppName("kmeans").setMaster("local[*]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        JavaRDD<String> datas = jsc.textFile("hdfs://192.168.195.11:9000/data/kdata2.dat");     //从hdfs上读取data
+        JavaRDD<String> datas = jsc.textFile(filepath2);     //从hdfs上读取data
         ArrayList<Double> fin = new ArrayList<>();
 
         while(true) {
@@ -136,7 +138,7 @@ public class ConsumeKmeans {
             if(distance == 0.0) {
                 //finished
                 for(int j = 0;j<nums;j++) {
-                    System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
+                    //System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
                     fin.add(center[j][1]);
                 }
                 break;

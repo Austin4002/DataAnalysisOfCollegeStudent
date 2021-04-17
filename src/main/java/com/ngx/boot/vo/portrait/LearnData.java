@@ -9,6 +9,6 @@ import lombok.Data;
 @Data
 public class LearnData {
     private String name;
-    private Integer star;
+    private double star;
 
 }

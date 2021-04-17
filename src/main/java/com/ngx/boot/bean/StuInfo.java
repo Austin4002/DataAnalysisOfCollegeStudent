@@ -1,5 +1,6 @@
 package com.ngx.boot.bean;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
@@ -7,6 +8,7 @@ import java.util.Date;
 @Data
 public class StuInfo {
     // 学号
+    @TableId
     private String stuNo;
     // 姓名
     private String stuName;
@@ -16,6 +18,13 @@ public class StuInfo {
     private String stuGrade;
     // 专业
     private String stuMajor;
+    // 行为特征
+    private String behavior;
+    // 消费特征
+    private String consume;
+    // 学习特征
+    private String learn;
+
     // 数据更新时间
     private Date updatetime;
 

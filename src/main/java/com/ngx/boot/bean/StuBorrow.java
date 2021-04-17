@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class StuBorrow {
     // 学号
-    private Integer stuNo;
+    private String stuNo;
     // 性别
     private String stuSex;
     // 姓名
@@ -19,7 +19,7 @@ public class StuBorrow {
     // 书籍类型
     private String bookType;
     // 借阅时长
-    private Double borTime;
+    private double borTime;
     // 学期
     private Integer stuTerm;
     // 学年

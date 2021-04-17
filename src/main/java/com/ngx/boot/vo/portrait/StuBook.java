@@ -1,5 +1,6 @@
 package com.ngx.boot.vo.portrait;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @date :
  */
 @Data
+@AllArgsConstructor
 public class StuBook {
 
     private List<TreeMap> treeMap;
@@ -16,4 +18,7 @@ public class StuBook {
     private InLibraryTime time;
 
     private InLibraryFrequency frequency;
+
+    // 每月进入图书馆频次
+    private Integer[] monthFre;
 }
