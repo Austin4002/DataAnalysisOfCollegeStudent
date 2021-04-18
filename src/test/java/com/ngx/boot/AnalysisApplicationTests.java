@@ -6,6 +6,7 @@ import com.ngx.boot.bean.BookInfo;
 import com.ngx.boot.service.BookInfoService;
 import com.ngx.boot.service.StuBorrowService;
 import com.ngx.boot.service.StuCheckService;
+import com.ngx.boot.service.StuInfoService;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @SpringBootTest
 class AnalysisApplicationTests {
@@ -30,27 +32,30 @@ class AnalysisApplicationTests {
     @Autowired
     private StuCheckService stuCheckService;
 
+    @Autowired
+    private StuInfoService stuInfoService;
+
 
 //    @Autowired
 //    private RedisTemplate redisTemplate;
 
     @Test
-    public void testWrapper(){
+    public void testWrapper() {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.select("DISTINCT book_type");
 
         List<BookInfo> list = bookInfoService.list(wrapper);
 
-        list.forEach(item->{
+        list.forEach(item -> {
             String bookType = item.getBookType();
             QueryWrapper queryWrapper = new QueryWrapper();
-            Map<String,String> rvMap = new HashMap<>();
-            rvMap.put("stu_no","201919201");
-            rvMap.put("book_type",bookType);
+            Map<String, String> rvMap = new HashMap<>();
+            rvMap.put("stu_no", "201919201");
+            rvMap.put("book_type", bookType);
             queryWrapper.allEq(rvMap);
 
             int count = stuBorrowService.count(queryWrapper);
-            System.out.println(bookType+":"+count);
+            System.out.println(bookType + ":" + count);
         });
 
     }
@@ -62,14 +67,14 @@ class AnalysisApplicationTests {
 
         int i = new Random().nextInt(max - min) + min;
         int j = new Random().nextInt(max - min) + min;
-        while(i == j){
+        while (i == j) {
             j = new Random().nextInt(max - min) + min;
         }
 
         BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/borrowCenter.txt"));
-        bw.write("1,"+i);
+        bw.write("1," + i);
         bw.newLine();
-        bw.write("1,"+j);
+        bw.write("1," + j);
         bw.close();
 //        "src/main/resources/borrow.dat"
 //        BufferedWriter bw2 = new BufferedWriter(new FileWriter("src/main/resources/borrow.dat"));
@@ -96,7 +101,7 @@ class AnalysisApplicationTests {
 
         ArrayList<Double> doubles = BorKmeans.bormeans("src/main/resources/borrowCenter.txt", "hdfs://192.168.195.11:9000/data/borrow.dat");
 
-        String clusterCenter = doubles.get(0) +"-" + doubles.get(1);
+        String clusterCenter = doubles.get(0) + "-" + doubles.get(1);
 
 //          将结果放入redis------失败了....
 //        redisTemplate.opsForValue().set("clusterCenter",clusterCenter);
@@ -109,14 +114,44 @@ class AnalysisApplicationTests {
     }
 
     @Test
-    public void testMaxAll(){
+    public void testMaxAll() {
         List<Integer> maxTime = stuCheckService.getAllMaxTime();
         maxTime.forEach(System.out::println);
     }
 
     @Test
-    public void testTimeCount(){
+    public void testTimeCount() {
         double avgTimeCount = stuCheckService.getAvgTimeCount("201919222");
     }
+
+    @Test
+    public void gradecount(){
+
+        List<String> gradelist = stuInfoService.getGradeNumber();
+        gradelist.forEach(System.out::println);
+        AtomicInteger count1 = new AtomicInteger();
+        AtomicInteger count2= new AtomicInteger();
+        AtomicInteger count3= new AtomicInteger();
+        AtomicInteger count4= new AtomicInteger();
+        gradelist.forEach(item->{
+            if (item.equals("大一")){
+                count1.getAndIncrement();
+            }
+            else if(item.equals("大二")){
+
+                count2.getAndIncrement();
+            }
+            else if(item.equals("大三")){
+
+                count3.getAndIncrement();
+            }
+            else if(item.equals("大四")){
+
+                count4.getAndIncrement();
+            }
+        });
+        System.out.println(count1+"--"+count2+"--"+count3+"--"+count4);
+    }
+
 
 }

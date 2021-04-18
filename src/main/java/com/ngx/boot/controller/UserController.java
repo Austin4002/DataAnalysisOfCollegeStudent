@@ -9,6 +9,9 @@ import com.ngx.boot.service.*;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
+import com.ngx.boot.vo.survey.Gender;
+import com.ngx.boot.vo.survey.Grade;
+import com.ngx.boot.vo.survey.Survey;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 @Slf4j
@@ -236,16 +240,65 @@ public class UserController {
     @GetMapping("/survey")
     public Result getSurvey() throws Exception {
         Result rs = new Result<>(500, "error");
+        Survey survey = new Survey();
+        //将各年级占比封装进去
+        List<Grade> grade = new ArrayList<>();
+        List<String> gradelist = stuInfoService.getGradeNumber();
+        AtomicInteger count1 = new AtomicInteger();
+        AtomicInteger count2= new AtomicInteger();
+        AtomicInteger count3= new AtomicInteger();
+        AtomicInteger count4= new AtomicInteger();
+        gradelist.forEach(item->{
+            if (item.equals("大一")){ count1.getAndIncrement(); }
+            else if(item.equals("大二")){ count2.getAndIncrement(); }
+            else if(item.equals("大三")){ count3.getAndIncrement(); }
+            else if(item.equals("大四")){ count4.getAndIncrement(); }
+        });
+        Grade grade1 = new Grade();
+        Grade grade2 = new Grade();
+        Grade grade3 = new Grade();
+        Grade grade4 = new Grade();
+        grade1.setType("大一");grade1.setValue(count1.intValue());
+        grade2.setType("大二");grade1.setValue(count2.intValue());
+        grade3.setType("大三");grade1.setValue(count3.intValue());
+        grade4.setType("大四");grade1.setValue(count4.intValue());
+        grade.add(grade1);
+        grade.add(grade2);
+        grade.add(grade3);
+        grade.add(grade4);
+        survey.setGrade(grade);
 
-//        Portrait portrait = new Portrait();
-////        StuInfo stuInfo = stuInfoService.getById(stuId);
-////        portrait.setStuId(stuId);
-////        portrait.setStuName(stuInfo.getStuName());
-////        portrait.setStuGrade(stuInfo.getStuGrade());
-////        portrait.setStuMajor(stuInfo.getStuMajor());
-////        portrait.setStuGender(stuInfo.getStuSex());
 
-        
+        //将男女占比封装进去
+        List<Gender> gender = new ArrayList<>();
+
+
+
+
+
+        //将各专业占比封装进去
+
+
+
+
+
+
+
+        //将餐厅月营业额封装进去
+
+
+
+
+
+
+
+        //将学生月阅读量封装进去
+
+
+
+
+
+
 
 
 

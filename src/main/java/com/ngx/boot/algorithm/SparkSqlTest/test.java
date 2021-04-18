@@ -15,7 +15,7 @@ public class test {
 
       //  System.out.println(scalatest.getDFFromMysql("(select * from analysisdata.stu_info) tmp"));
 
-        String s = hive.main().toString();
+        //String s = hive.main().toString();
 
         System.out.println();
 
