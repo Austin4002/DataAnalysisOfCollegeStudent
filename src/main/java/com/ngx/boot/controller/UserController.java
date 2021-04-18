@@ -12,7 +12,6 @@ import com.ngx.boot.vo.portrait.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +20,7 @@ import java.util.*;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/user")
+//@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -43,7 +42,7 @@ public class UserController {
     private StuBorrowService stuBorrowService;
 
 
-    @GetMapping("/portrait")
+    @GetMapping("/user/portrait")
     public Result getPortrait(@RequestParam(value = "stuId" ,required = true) String stuId) throws InvocationTargetException, IllegalAccessException {
         Result rs = new Result<>(500, "error");
 
@@ -61,7 +60,16 @@ public class UserController {
         String consumeTags = stuInfo.getConsume();
         //查询行为标签
         String behaviorTags = stuInfo.getBehavior();
-        String stuTagsStr = learnTags+"-"+consumeTags+"-"+behaviorTags;
+        String stuTagsStr ="";
+        if (learnTags != null){
+            stuTagsStr += learnTags + "-";
+        }
+        if (consumeTags != null){
+            stuTagsStr += consumeTags + "-";
+        }
+        if (behaviorTags != null){
+            stuTagsStr += behaviorTags;
+        }
 
         String[] stuTags = stuTagsStr.split("-");
         //将所有标签放入portrait
@@ -206,16 +214,20 @@ public class UserController {
 //            if (item <= topTime){
 //                count++;
 //            }
-//        });
+//        });0
         int count1 = (int) maxTime.stream().filter(item -> item <= topTime).count();
-        inLibraryTime.setOver(count1/maxTime.size() * 100);
+        double inTime = (double) count1/maxTime.size() * 100;
+        log.error("count1--->{},maxTimesize--->{},inTime--->{}",count1,maxTime.size(),inTime);
+        inLibraryTime.setOver(inTime);
 
         //最高入馆次数
         InLibraryFrequency inLibraryFrequency = new InLibraryFrequency();
         inLibraryFrequency.setValue(topTimeCount);
         List<Integer> maxTimeCount = stuCheckService.getAllMaxTimeCount();
         int count2 = (int) maxTimeCount.stream().filter(item -> item <= topTime).count();
-        inLibraryFrequency.setOver(count2/maxTimeCount.size() * 100);
+        double inFrequency = (double) count2/maxTimeCount.size() * 100;
+        log.error("count2--->{},maxTimeCountsize--->{},inFrequency--->{}",count2,maxTimeCount.size(),inFrequency);
+        inLibraryFrequency.setOver(inFrequency);
 
 
 
