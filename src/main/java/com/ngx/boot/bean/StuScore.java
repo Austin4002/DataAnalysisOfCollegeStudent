@@ -33,7 +33,7 @@ public class StuScore {
     // 学期
     private String stuTerm;
     // 平均学分绩点
-    private String stuGpa;
+    private double stuGpa;
     // 数据更新时间
     private Date updatetime;
 
