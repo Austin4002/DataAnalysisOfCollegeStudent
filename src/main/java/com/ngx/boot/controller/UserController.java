@@ -6,6 +6,7 @@ import com.ngx.boot.bean.StuCheck;
 import com.ngx.boot.bean.StuInfo;
 import com.ngx.boot.bean.StuScore;
 import com.ngx.boot.service.*;
+import com.ngx.boot.vo.Major;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -258,25 +260,53 @@ public class UserController {
         Grade grade2 = new Grade();
         Grade grade3 = new Grade();
         Grade grade4 = new Grade();
-        grade1.setType("大一");grade1.setValue(count1.intValue());
-        grade2.setType("大二");grade1.setValue(count2.intValue());
-        grade3.setType("大三");grade1.setValue(count3.intValue());
-        grade4.setType("大四");grade1.setValue(count4.intValue());
+        grade1.setType("大一");
+        grade1.setValue(count1.intValue());
+        grade2.setType("大二");
+        grade2.setValue(count2.intValue());
+        grade3.setType("大三");
+        grade3.setValue(count3.intValue());
+        grade4.setType("大四");
+        grade4.setValue(count4.intValue());
         grade.add(grade1);
         grade.add(grade2);
         grade.add(grade3);
         grade.add(grade4);
         survey.setGrade(grade);
 
-
         //将男女占比封装进去
         List<Gender> gender = new ArrayList<>();
-
-
-
-
+        List<String> genderlist = stuInfoService.getGenderNumber();
+        AtomicInteger gendercount1 = new AtomicInteger();
+        AtomicInteger gendercount2= new AtomicInteger();
+        genderlist.forEach(v->{
+            if(v.equals("男")){gendercount1.getAndIncrement();}
+            else if(v.equals("女")){ gendercount2.getAndIncrement(); }
+        });
+        Gender gender1 = new Gender();
+        Gender gender2 = new Gender();
+        gender1.setType("男");gender1.setValue(gendercount1.intValue());
+        gender2.setType("女");gender2.setValue(gendercount2.intValue());
+        gender.add(gender1);
+        gender.add(gender2);
+        survey.setGender(gender);
 
         //将各专业占比封装进去
+        List<Major> major = new ArrayList<>();
+        //List<String> genderlist = stuInfoService.getGenderNumber();
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.select("DISTINCT stu_major");
+        List<StuInfo> stuInfos = stuInfoService.list(wrapper);
+        List<String> res=stuInfos.stream().map(v->v.getStuMajor()).collect(Collectors.toList());
+        for (int i = 0; i < res.size(); i++) {
+            QueryWrapper majorWrapper = new QueryWrapper();
+            majorWrapper.eq("stu_major",res.get(i));
+            int count = stuInfoService.count(majorWrapper);
+            
+        }
+
+
+
 
 
 
@@ -285,6 +315,7 @@ public class UserController {
 
 
         //将餐厅月营业额封装进去
+
 
 
 
@@ -304,6 +335,8 @@ public class UserController {
 
 
 
+
+        rs.setData(survey);
         rs.setCode(200);
         rs.setMsg("ok");
 
@@ -314,7 +347,22 @@ public class UserController {
 
 
 
+    @GetMapping("/major")
+    public Result getMajor() throws Exception {
+        Result rs = new Result<>(500, "error");
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.select("DISTINCT stu_major");
+        List<StuInfo> majors = stuInfoService.list(queryWrapper);
 
+        List<String> res=majors.stream().map(v->v.getStuMajor()).collect(Collectors.toList());
+
+        rs.setData(res);
+
+        rs.setCode(200);
+        rs.setMsg("ok");
+
+        return rs;
+    }
 
 
 

@@ -5,4 +5,7 @@
     <select id="getGradeNumber" resultType="java.lang.String">
         select stu_grade from stu_info
     </select>
+    <select id="getGenderNumber" resultType="java.lang.String">
+        select stu_sex from stu_info
+    </select>
 </mapper>

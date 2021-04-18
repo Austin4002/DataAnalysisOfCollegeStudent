@@ -8,4 +8,5 @@ import java.util.List;
 public interface StuInfoMapper extends BaseMapper<StuInfo> {
     List<String> getGradeNumber();
 
+    List<String> getGenderNumber();
 }

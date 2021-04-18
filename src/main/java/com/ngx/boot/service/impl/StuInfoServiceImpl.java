@@ -20,4 +20,9 @@ public class StuInfoServiceImpl extends ServiceImpl<StuInfoMapper, StuInfo> impl
     public List<String> getGradeNumber() {
         return stuInfoMapper.getGradeNumber();
     }
+
+    @Override
+    public List<String> getGenderNumber() {
+        return stuInfoMapper.getGenderNumber();
+    }
 }

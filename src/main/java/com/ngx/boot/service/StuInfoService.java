@@ -8,4 +8,5 @@ import java.util.List;
 public interface StuInfoService extends IService<StuInfo> {
     List<String> getGradeNumber();
 
+    List<String> getGenderNumber();
 }
