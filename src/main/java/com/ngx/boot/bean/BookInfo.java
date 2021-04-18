@@ -1,5 +1,6 @@
 package com.ngx.boot.bean;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
@@ -7,6 +8,7 @@ import java.util.Date;
 @Data
 public class BookInfo {
     // 书籍编号
+    @TableId
     private String bookNo;
     // 书籍名称
     private String bookName;
