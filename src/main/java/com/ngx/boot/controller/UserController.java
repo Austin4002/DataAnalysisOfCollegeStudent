@@ -44,7 +44,7 @@ public class UserController {
 
 
     @GetMapping("/portrait")
-    public Result getPortrait(@RequestParam(value = "stuId" ,required = true) String stuId) throws InvocationTargetException, IllegalAccessException {
+    public Result getPortrait(@RequestParam(value = "stuId", required = true) String stuId) throws InvocationTargetException, IllegalAccessException {
         Result rs = new Result<>(500, "error");
 
         Portrait portrait = new Portrait();
@@ -61,7 +61,7 @@ public class UserController {
         String consumeTags = stuInfo.getConsume();
         //查询行为标签
         String behaviorTags = stuInfo.getBehavior();
-        String stuTagsStr = learnTags+"-"+consumeTags+"-"+behaviorTags;
+        String stuTagsStr = learnTags + "-" + consumeTags + "-" + behaviorTags;
 
         String[] stuTags = stuTagsStr.split("-");
         //将所有标签放入portrait
@@ -70,26 +70,26 @@ public class UserController {
         //查询学生GPA
         List<StuGPA> stuGPAList = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
-        map.put("stu_no",stuId);
+        map.put("stu_no", stuId);
         List<StuScore> scores = stuScoreService.listByMap(map);
-        scores.forEach(item->{
+        scores.forEach(item -> {
             double score = item.getStuGpa();
             String term = item.getStuTerm();
             String year = item.getStuYear();
             StuGPA stuGPA = new StuGPA();
             stuGPA.setValue(score);
-            stuGPA.setYear(year+"."+term);
+            stuGPA.setYear(year + "." + term);
             stuGPAList.add(stuGPA);
         });
         portrait.setStuGPA(stuGPAList);
 
         // 创建词云
-        List<StuWord> word =new ArrayList<>();
+        List<StuWord> word = new ArrayList<>();
 
         StuWord stuWord1 = new StuWord(new Random().nextInt(10 - 1) + 1, stuInfo.getStuMajor());
         StuWord stuWord2 = new StuWord(new Random().nextInt(10 - 1) + 1, stuInfo.getStuGrade());
         for (int i = 0; i < stuTags.length; i++) {
-            word.add(new StuWord(new Random().nextInt(10 - 1) + 1,stuTags[i]));
+            word.add(new StuWord(new Random().nextInt(10 - 1) + 1, stuTags[i]));
         }
         word.add(stuWord1);
         word.add(stuWord2);
@@ -98,9 +98,9 @@ public class UserController {
         //封装消费数据
         List<ConsumeData> consumeDataList = new ArrayList<>();
         //平均消费
-        ConsumeData avgConsumeData =new ConsumeData();
+        ConsumeData avgConsumeData = new ConsumeData();
         avgConsumeData.setName("平均消费");
-        double avgConsume =stuConsumeService.getAvgConsumeMoneyByNo(stuId);
+        double avgConsume = stuConsumeService.getAvgConsumeMoneyByNo(stuId);
         avgConsumeData.setStar(avgConsume);
         //消费峰值
         ConsumeData topConsumeData = new ConsumeData();
@@ -108,7 +108,7 @@ public class UserController {
         double topConsume = stuConsumeService.getMaxConsumeMoneyByNo(stuId);
         topConsumeData.setStar(topConsume);
         //消费频次
-        ConsumeData frequencyConsumeData =new ConsumeData();
+        ConsumeData frequencyConsumeData = new ConsumeData();
         frequencyConsumeData.setName("消费频次");
         Integer frequencyConsume = stuConsumeService.getFrequencyConsumeData(stuId);
         frequencyConsumeData.setStar(frequencyConsume);
@@ -171,10 +171,8 @@ public class UserController {
         Consume consume = new Consume(consumeDataList);
         Learn learn = new Learn(learnDataList);
         Behavior behavior = new Behavior(behaviorDataList);
-        StuBehavior stuBehavior = new StuBehavior(consume,learn,behavior);
+        StuBehavior stuBehavior = new StuBehavior(consume, learn, behavior);
         portrait.setStuBehavior(stuBehavior);
-
-
 
 
         List<TreeMap> treeMapList = new ArrayList<>();
@@ -182,19 +180,18 @@ public class UserController {
         wrapper.select("DISTINCT book_type");
 
         List<BookInfo> list = bookInfoService.list(wrapper);
-        list.forEach(item->{
+        list.forEach(item -> {
             String bookType = item.getBookType();
             QueryWrapper queryWrapper = new QueryWrapper();
-            Map<String,String> rvMap = new HashMap<>();
-            rvMap.put("stu_no","201919201");
-            rvMap.put("book_type",bookType);
+            Map<String, String> rvMap = new HashMap<>();
+            rvMap.put("stu_no", "201919201");
+            rvMap.put("book_type", bookType);
             queryWrapper.allEq(rvMap);
 
             int count = stuBorrowService.count(queryWrapper);
-            TreeMap treeMap = new TreeMap(bookType,count);
+            TreeMap treeMap = new TreeMap(bookType, count);
             treeMapList.add(treeMap);
         });
-
 
 
         InLibraryTime inLibraryTime = new InLibraryTime();
@@ -208,19 +205,18 @@ public class UserController {
 //            }
 //        });
         int count1 = (int) maxTime.stream().filter(item -> item <= topTime).count();
-        inLibraryTime.setOver(count1/maxTime.size() * 100);
+        inLibraryTime.setOver(count1 / maxTime.size() * 100);
 
         //最高入馆次数
         InLibraryFrequency inLibraryFrequency = new InLibraryFrequency();
         inLibraryFrequency.setValue(topTimeCount);
         List<Integer> maxTimeCount = stuCheckService.getAllMaxTimeCount();
         int count2 = (int) maxTimeCount.stream().filter(item -> item <= topTime).count();
-        inLibraryFrequency.setOver(count2/maxTimeCount.size() * 100);
-
+        inLibraryFrequency.setOver(count2 / maxTimeCount.size() * 100);
 
 
         QueryWrapper frequencyWrapper = new QueryWrapper();
-        frequencyWrapper.eq("stu_no",stuId);
+        frequencyWrapper.eq("stu_no", stuId);
         List<StuCheck> stuCheckList = stuCheckService.list(frequencyWrapper);
         int arraySize = stuCheckList.size();
         Integer[] monthFre = new Integer[arraySize];
@@ -228,13 +224,54 @@ public class UserController {
             monthFre[i] = stuCheckList.get(i).getStuFrequent();
         }
 
-        portrait.setStuBook(new StuBook(treeMapList,inLibraryTime,inLibraryFrequency,monthFre));
+        portrait.setStuBook(new StuBook(treeMapList, inLibraryTime, inLibraryFrequency, monthFre));
 
         rs.setCode(200);
         rs.setMsg("ok");
         rs.setData(portrait);
         return rs;
     }
+
+
+    @GetMapping("/survey")
+    public Result getSurvey() throws Exception {
+        Result rs = new Result<>(500, "error");
+
+//        Portrait portrait = new Portrait();
+////        StuInfo stuInfo = stuInfoService.getById(stuId);
+////        portrait.setStuId(stuId);
+////        portrait.setStuName(stuInfo.getStuName());
+////        portrait.setStuGrade(stuInfo.getStuGrade());
+////        portrait.setStuMajor(stuInfo.getStuMajor());
+////        portrait.setStuGender(stuInfo.getStuSex());
+
+        
+
+
+
+
+
+        rs.setCode(200);
+        rs.setMsg("ok");
+
+        return rs;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Result getScore(@RequestParam String stuId){
 
