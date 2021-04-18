@@ -14,10 +14,10 @@ public class Survey {
     private List<Gender> gender;
 
     //专业占比
-    private List<Major> major;
+    private List<Majorss> major;
 
     //餐厅月营业额
-    private List<Consume> consume;
+    private List<sConsume> consume;
 
     //学生月阅读量
     private List<Reading> reading;

@@ -3,7 +3,7 @@ package com.ngx.boot.vo.survey;
 import lombok.Data;
 
 @Data
-public class Consume {
+public class sConsume {
 
     //营业时间
     private String date;

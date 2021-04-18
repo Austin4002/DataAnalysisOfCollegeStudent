@@ -6,14 +6,14 @@ import lombok.Data;
 public class Reading {
 
 
-    //学生阅读年份
-    private String year;
+    //学生年级
+    private String grade;
 
-    //学生阅读月份
-    private Integer month;
+    //学生阅读年份学期
+    private String term;
 
     //学生月阅读量
-    private Integer reading;
+    private double reading;
 
 
 }

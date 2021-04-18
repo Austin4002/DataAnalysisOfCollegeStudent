@@ -1,18 +1,12 @@
 package com.ngx.boot.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ngx.boot.bean.BookInfo;
-import com.ngx.boot.bean.StuCheck;
-import com.ngx.boot.bean.StuInfo;
-import com.ngx.boot.bean.StuScore;
+import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
-import com.ngx.boot.vo.Major;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
-import com.ngx.boot.vo.survey.Gender;
-import com.ngx.boot.vo.survey.Grade;
-import com.ngx.boot.vo.survey.Survey;
+import com.ngx.boot.vo.survey.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -292,8 +286,7 @@ public class UserController {
         survey.setGender(gender);
 
         //将各专业占比封装进去
-        List<Major> major = new ArrayList<>();
-        //List<String> genderlist = stuInfoService.getGenderNumber();
+        List<Majorss> major = new ArrayList<>();
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.select("DISTINCT stu_major");
         List<StuInfo> stuInfos = stuInfoService.list(wrapper);
@@ -302,32 +295,115 @@ public class UserController {
             QueryWrapper majorWrapper = new QueryWrapper();
             majorWrapper.eq("stu_major",res.get(i));
             int count = stuInfoService.count(majorWrapper);
-            
-        }
-
-
-
-
-
-
-
-
+            Majorss majo = new Majorss();
+            majo.setType(res.get(i));
+            majo.setValue(count);
+            major.add(majo);
+    }
+        survey.setMajor(major);
 
 
         //将餐厅月营业额封装进去
+        List<sConsume> consumes = new ArrayList<>();
+//        QueryWrapper queryWrapper = new QueryWrapper();
+//        Map<String, String> rvMap = new HashMap<>();
+//        rvMap.put("stu_no", "201919201");
+//        rvMap.put("book_type", bookType);
+//        queryWrapper.allEq(rvMap);
+//        int count = stuBorrowService.count(queryWrapper);
 
+        for (int i = 2017; i < 2020; i++) {
 
+            for (int j = 1; j < 11; j++) {
 
+                for (int k = 1; k < 5; k++) {
 
+                QueryWrapper Wrapper1 = new QueryWrapper();
+                Map<Object, Object> resMap = new HashMap<>();
+                //String resno = ""+k;
+                resMap.put("stu_year",i);
+                resMap.put("con_month",j);
+                resMap.put("con_restaurant",k);
+                Wrapper1.allEq(resMap);
+                List<StuConsume> stuConsumes = stuConsumeService.list(Wrapper1);
+                double counts = stuConsumes.stream().mapToInt(item -> (int) item.getConMoney()).sum();
+                sConsume cons = new sConsume();
+                String times = i+"."+j;
+                String resno=null;
+                if(k==1){
+                    resno= "1号餐厅";
+                }
+                else if (k==2){
+                    resno= "2号餐厅";
+                }
+                else if (k==3){
+                    resno= "3号餐厅";
+                }
+                else if (k==4){
+                    resno= "4号餐厅";
+                }
 
+                cons.setDate(times);
+                cons.setType(resno);
+                cons.setValue(counts);
+                consumes.add(cons);
 
+                }
 
+            }
+
+        }
+
+        survey.setConsume(consumes);
 
         //将学生月阅读量封装进去
 
-
-
-
+//        List<Reading> readings = new ArrayList<>();
+//
+//        for (int i = 2017; i < 2020; i++) {
+//            for (int j = 1; j < 3; j++) {
+//                for (int k = 2016; k < 2020; k++) {
+//
+//                QueryWrapper Wrapper2 = new QueryWrapper();
+//                Map<Object, Object> redMap = new HashMap<>();
+//                redMap.put("stu_year",i);
+//                redMap.put("stu_term",j);
+//                redMap.put("stu_garde",k);
+//                Wrapper2.allEq(redMap);
+//                List<StuBorrow> stuBor= stuBorrowService.list(Wrapper2);
+//                //double countss = StuBorrow.stream().mapToInt(item -> (int) item.getb.sum();
+//                    double countss = stuBor.stream().mapToDouble(StuBorrow::getBorTime).sum();
+//                    String grad = null;
+//                if(k==2016){
+//                    grad="大四";
+//
+//                }
+//                else if(k==2017){
+//                    grad="大三";
+//
+//                }
+//                else if(k==2018){
+//                    grad="大二";
+//
+//                }
+//                else if(k==2019){
+//                    grad="大一";
+//
+//                }
+//                String times =i+"/"+j;
+//                Reading read = new Reading();
+//                read.setTerm(times);
+//                read.setGrade(grad);
+//                read.setReading(countss);
+//
+//
+//
+//
+//                }
+//
+//            }
+//
+//        }
 
 
 

@@ -3,7 +3,7 @@ package com.ngx.boot.vo.survey;
 import lombok.Data;
 
 @Data
-public class Major {
+public class Majorss {
 
     //专业名称
     private String type;
