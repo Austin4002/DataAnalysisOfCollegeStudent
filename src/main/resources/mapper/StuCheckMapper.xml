@@ -20,4 +20,7 @@
     <select id="getAllMaxTimeCount" resultType="java.lang.Integer">
         select MAX(stu_frequent) from stu_check group by stu_no
     </select>
+    <select id="getStuNoDistinct" resultType="com.ngx.boot.bean.StuCheck">
+        select * from stu_check group by stu_no
+    </select>
 </mapper>

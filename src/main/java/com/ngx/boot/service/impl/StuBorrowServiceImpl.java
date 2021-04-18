@@ -17,8 +17,8 @@ public class StuBorrowServiceImpl extends ServiceImpl<StuBorrowMapper, StuBorrow
 
 
     @Override
-    public List<StuBorrow> getStuNoDisctinct() {
-        List<StuBorrow> StuBorrowList = stuBorrowMapper.getStuNoDisctinct();
+    public List<StuBorrow> getStuNoDistinct() {
+        List<StuBorrow> StuBorrowList = stuBorrowMapper.getStuNoDistinct();
         return StuBorrowList;
     }
 

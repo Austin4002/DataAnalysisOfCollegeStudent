@@ -154,6 +154,7 @@ public class ConsumeKmeans {
             }
         }
 
+        jsc.close();
         return fin;
 
     }

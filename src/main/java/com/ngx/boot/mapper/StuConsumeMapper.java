@@ -8,9 +8,13 @@ import java.util.List;
 public interface StuConsumeMapper extends BaseMapper<StuConsume> {
 
 
-    List<StuConsume> getStuNoDisctinct();
+    List<StuConsume> getStuNoDistinct();
 
     double getAvgConsumeMoneyByNo(String stuNo);
 
     double getMaxConsumeMoneyByNo(String stuNo);
+
+    Integer getAmountByRestaurant(String year, String month,Integer restaurantNumber);
+
+    Integer getAmountByRestaurantAndWindow(String year, String month, Integer restaurantNumber, Integer windowNumber);
 }

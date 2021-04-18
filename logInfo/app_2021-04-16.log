@@ -24,7 +24,7 @@ java.lang.NullPointerException: null
 	at com.ngx.boot.algorithm.SparkSqlTest.scalatest$.getDFFromMysql(scalatest.scala:26)
 	at com.ngx.boot.algorithm.SparkSqlTest.scalatest.getDFFromMysql(scalatest.scala)
 	at com.ngx.boot.algorithm.SparkSqlTest.test.main(test.java:18)
-2021-04-16 20:35:59,346 [main] ERROR com.ngx.boot.utils.BorrowCluster - i--------:32,j----------:24
+2021-04-16 20:35:59,346 [main] ERROR com.ngx.boot.cluster.BorrowCluster - i--------:32,j----------:24
 2021-04-16 21:29:10,962 [main] ERROR org.apache.spark.SparkContext - Error initializing SparkContext.
 java.lang.RuntimeException: java.lang.NoSuchFieldException: DEFAULT_TINY_CACHE_SIZE
 	at org.apache.spark.network.util.NettyUtils.getPrivateStaticField(NettyUtils.java:131)

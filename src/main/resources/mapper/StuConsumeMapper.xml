@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ngx.boot.mapper.StuConsumeMapper">
 
-    <select id="getStuNoDisctinct" resultType="com.ngx.boot.bean.StuConsume">
+    <select id="getStuNoDistinct" resultType="com.ngx.boot.bean.StuConsume">
         select * from stu_consume group by stu_no
     </select>
     <select id="getAvgConsumeMoneyByNo" resultType="java.lang.Double">
@@ -10,5 +10,17 @@
     </select>
     <select id="getMaxConsumeMoneyByNo" resultType="java.lang.Double">
         select MAX(con_money) from stu_consume where stu_no = #{stuNo}
+    </select>
+    <select id="getAmountByRestaurant" resultType="java.lang.Integer">
+        select SUM(con_money) from stu_consume where con_restaurant=#{restaurantNumber} and stu_year = #{year}
+        <if test="month != null and month != ''">
+            and con_month = #{month}
+        </if>
+    </select>
+    <select id="getAmountByRestaurantAndWindow" resultType="java.lang.Integer">
+        select SUM(con_money) from stu_consume where con_restaurant=#{restaurantNumber} and con_window=#{windowNumber} and stu_year = #{year}
+        <if test="month != null and month != ''">
+            and con_month = #{month}
+        </if>
     </select>
 </mapper>

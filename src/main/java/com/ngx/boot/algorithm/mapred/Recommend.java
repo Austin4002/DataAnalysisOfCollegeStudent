@@ -24,11 +24,11 @@ public class Recommend {
 //
 //	}
 
-   // public void mapred() throws Exception {
-        public void mapred(String fpath) throws Exception {
+    //public void mapred() throws Exception {
+        public static void mapred(String fpath) throws Exception {
     	
         Map<String, String> path = new HashMap<String,String>();
-        //path.put("data", "src/main/resources/small2.txt");
+        //path.put("data", "src/main/resources/bookComment.txt");
         path.put("data", fpath);
         path.put("Step1Input", HDFS + "/data/input");
         path.put("Step1Output", path.get("Step1Input") + "/step1");

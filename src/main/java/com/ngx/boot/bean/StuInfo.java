@@ -24,7 +24,8 @@ public class StuInfo {
     private String consume;
     // 学习特征
     private String learn;
-
+    // 成绩特征
+    private String score;
     // 数据更新时间
     private Date updatetime;
 

@@ -1,11 +1,14 @@
 package com.ngx.boot.bean;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 public class StuCheck {
+    @TableId
+    private String id;
     // 学号
     private String stuNo;
     // 性别
@@ -15,7 +18,7 @@ public class StuCheck {
     // 考勤频率
     private Integer stuFrequent;
     // 入馆时长
-    private String sumTime;
+    private Integer sumTime;
     // 月
     private Integer stuMonth;
     // 学期

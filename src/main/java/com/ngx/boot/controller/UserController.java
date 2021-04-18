@@ -48,6 +48,7 @@ public class UserController {
 
         Portrait portrait = new Portrait();
         StuInfo stuInfo = stuInfoService.getById(stuId);
+
         portrait.setStuId(stuId);
         portrait.setStuName(stuInfo.getStuName());
         portrait.setStuGrade(stuInfo.getStuGrade());
@@ -194,7 +195,7 @@ public class UserController {
             String bookType = item.getBookType();
             QueryWrapper queryWrapper = new QueryWrapper();
             Map<String,String> rvMap = new HashMap<>();
-            rvMap.put("stu_no","201919201");
+            rvMap.put("stu_no",stuId);
             rvMap.put("book_type",bookType);
             queryWrapper.allEq(rvMap);
 
@@ -224,7 +225,8 @@ public class UserController {
         InLibraryFrequency inLibraryFrequency = new InLibraryFrequency();
         inLibraryFrequency.setValue(topTimeCount);
         List<Integer> maxTimeCount = stuCheckService.getAllMaxTimeCount();
-        int count2 = (int) maxTimeCount.stream().filter(item -> item <= topTime).count();
+        int count2 = (int) maxTimeCount.stream().filter(item -> item <= topTimeCount).count();
+
         double inFrequency = (double) count2/maxTimeCount.size() * 100;
         log.error("count2--->{},maxTimeCountsize--->{},inFrequency--->{}",count2,maxTimeCount.size(),inFrequency);
         inLibraryFrequency.setOver(inFrequency);

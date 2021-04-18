@@ -3,7 +3,7 @@
 <mapper namespace="com.ngx.boot.mapper.StuBorrowMapper">
 
 
-    <select id="getStuNoDisctinct" resultType="com.ngx.boot.bean.StuBorrow">
+    <select id="getStuNoDistinct" resultType="com.ngx.boot.bean.StuBorrow">
         select * from stu_borrow group by stu_no
     </select>
 

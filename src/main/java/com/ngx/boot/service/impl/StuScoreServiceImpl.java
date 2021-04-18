@@ -52,4 +52,9 @@ public class StuScoreServiceImpl extends ServiceImpl<StuScoreMapper, StuScore> i
 
         return avgScore;
     }
+
+    @Override
+    public List<StuScore> getStuNoDistinct() {
+        return stuScoreMapper.getStuNoDistinct();
+    }
 }

@@ -10,4 +10,8 @@
     <select id="getTopGPA" resultType="java.lang.Double">
         select MAX(stu_gpa) from stu_score where stu_no = #{stuId}
     </select>
+    <select id="getStuNoDistinct" resultType="com.ngx.boot.bean.StuScore">
+        select * from stu_score group by stu_no
+    </select>
+
 </mapper>

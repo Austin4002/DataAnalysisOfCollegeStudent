@@ -1,7 +1,8 @@
-package com.ngx.boot.utils;
+package com.ngx.boot.cluster;
 
 import com.ngx.boot.algorithm.kmeans.ConsumeKmeans;
 import com.ngx.boot.bean.StuConsume;
+import com.ngx.boot.bean.StuInfo;
 import com.ngx.boot.service.StuConsumeService;
 import com.ngx.boot.service.StuInfoService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -21,23 +23,22 @@ import java.util.*;
  */
 
 @Slf4j
-//@Component
+@Component
 public class ConsumeCluster {
 
     private Map<String, Double> clusterCenter = new HashMap<>();
 
-    private int max = 35;
-    private int min = 9;
+    int max = 35;
+    int min = 9;
 
     @Autowired
     private StuConsumeService stuConsumeService;
 
-
     @Autowired
     private StuInfoService stuInfoService;
 
-
-    public List<Double> getConsumeByConmoney() throws Exception {
+    //@PostConstruct
+    public void getConsumeByConmoney() throws Exception {
         //生成消费聚类中心点，写入文件
         int i = new Random().nextInt(max - min) + min;
         int j = new Random().nextInt(max - min) + min;
@@ -52,10 +53,10 @@ public class ConsumeCluster {
         bw.close();
 
         BufferedWriter bw2 = new BufferedWriter(new FileWriter("src/main/resources/consume.dat"));
-        //List<StuBorrow> list = stuBorrowService.list();
+
         List<StuConsume> list = stuConsumeService.list();
         list.forEach(item -> {
-            Double money = item.getConMoney();
+            double money = item.getConMoney();
             try {
                 bw2.write("1," + money);
                 bw2.newLine();
@@ -84,49 +85,37 @@ public class ConsumeCluster {
             clusterCenter.put("bound_max",doubles.get(1));
             clusterCenter.put("bound_min",doubles.get(0));
         }
-        return doubles;
 
-
+        log.error("consume_max--->{},consume_min--->{}",clusterCenter.get("bound_max"),clusterCenter.get("bound_min"));
+        this.generateStuScoreTags();
     }
 
-
-//    @PostConstruct
-    public void generateStuTags(){
+    public void generateStuScoreTags(){
         // 去重查询表中所有的学生学号
-        List<StuConsume> stuList = stuConsumeService.getStuNoDisctinct();
+        List<StuConsume> stuList = stuConsumeService.getStuNoDistinct();
         double clusterMax = clusterCenter.get("bound_max");
         double clusterMin = clusterCenter.get("bound_min");
         //根据学号查询所有学生的消费金额及消费频次
         stuList.forEach(item->{
             String stuNo = item.getStuNo();
             //查询该学生的消费总金额及消费频次，求平均消费金额
-            //double consumeAvg = stuConsumeService
-
+            double consumeAvg = stuConsumeService.getAvgConsumeMoneyByNo(stuNo);
+            String consumeTags = null;
+            if (consumeAvg < clusterMin ){
+//                String[] learnTags = new String[]{"阅读兴趣低","对书无感","很少阅读书籍"};
+                consumeTags = "消费水平低-紧凑度日-物质消费较低";
+            } else if (consumeAvg >= clusterMin && consumeAvg <= clusterMax){
+                consumeTags = "消费水平一般-平平淡淡-物质消费一般";
+            } else if (consumeAvg > clusterMax){
+                consumeTags = "消费水平高-挥金如土-物质消费较高";
+            }
+            StuInfo stuInfo = new StuInfo();
+            stuInfo.setStuNo(stuNo);
+            stuInfo.setConsume(consumeTags);
+            stuInfoService.updateById(stuInfo);
 
         });
-
-//        // 根据每个学号查询所有学生的借阅时间及次数
-//        stuList.forEach(item ->{
-//            String stuNo = item.getStuNo();
-//            // 查询该学生的借阅总时间及次数，求平均借阅时间
-//            double borrowAvg = stuBorrowService.getAvgBorrowTimeByNo(stuNo);
-//            String learnTags = null;
-//            if (borrowAvg < clusterMin ){
-////                String[] learnTags = new String[]{"阅读兴趣低","对书无感","很少阅读书籍"};
-//                learnTags = "阅读兴趣低-对书无感-很少阅读书籍";
-//            } else if (borrowAvg >= clusterMin && borrowAvg <= clusterMax){
-//                learnTags = "阅读兴趣一般-偶尔阅读-普通阅读";
-//            } else if (borrowAvg > clusterMax){
-//                learnTags = "热爱阅读-博览群书-文学气质";
-//            }
-//            StuInfo stuInfo = new StuInfo();
-//            stuInfo.setStuNo(stuNo);
-//            stuInfo.setLearn(learnTags);
-//            stuInfoService.updateById(stuInfo);
-//        });
-//
-//        log.error("---------------->generateStuTags被执行");
-
+        log.error("---------------->generateStuConsumeTags执行完毕");
     }
 
 

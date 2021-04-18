@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface StuBorrowService extends IService<StuBorrow> {
 
-    List<StuBorrow> getStuNoDisctinct();
+    List<StuBorrow> getStuNoDistinct();
 
 
     double getAvgBorrowTimeByNo(String stuNo);

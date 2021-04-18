@@ -1,4 +1,4 @@
-package com.ngx.boot.utils;
+package com.ngx.boot.cluster;
 
 import com.ngx.boot.algorithm.kmeans.BorKmeans;
 import com.ngx.boot.bean.StuBorrow;
@@ -10,25 +10,25 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
 /**
- * @author : 朱坤
+ * @author : 牛庚新
  * @date :
  */
 @Slf4j
-//@Component
+@Component
 public class BorrowCluster {
 
     private Map<String,Double> clusterCenter = new HashMap<>();
 
-    private int max = 48;
-    private int min = 1;
+    int max = 48;
+    int min = 1;
 
     @Autowired
     private StuBorrowService stuBorrowService;
@@ -36,8 +36,8 @@ public class BorrowCluster {
     @Autowired
     private StuInfoService stuInfoService;
 
-    @PostConstruct
-    public List<Double> getRandomByBorTime() throws Exception {
+    //@PostConstruct
+    public void getRandomByBorTime() throws Exception {
 
         log.error("------------->getRandomByBorTime被执行");
 
@@ -90,13 +90,12 @@ public class BorrowCluster {
             clusterCenter.put("bound_max",doubles.get(1));
             clusterCenter.put("bound_min",doubles.get(0));
         }
-        return doubles;
+        this.generateStuConsumeTags();
     }
 
-    @PostConstruct
-    public void generateStuTags(){
+    public void generateStuConsumeTags(){
         // 去重查询表中所有的学生学号
-        List<StuBorrow> stuList = stuBorrowService.getStuNoDisctinct();
+        List<StuBorrow> stuList = stuBorrowService.getStuNoDistinct();
         double clusterMax = clusterCenter.get("bound_max");
         double clusterMin = clusterCenter.get("bound_min");
         // 根据每个学号查询所有学生的借阅时间及次数
@@ -119,8 +118,7 @@ public class BorrowCluster {
             stuInfoService.updateById(stuInfo);
         });
 
-        log.error("---------------->generateStuTags被执行");
-
+        log.error("---------------->generateStuConsumeTags执行完毕");
 
     }
 

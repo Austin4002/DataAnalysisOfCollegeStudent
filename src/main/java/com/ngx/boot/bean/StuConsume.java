@@ -1,11 +1,14 @@
 package com.ngx.boot.bean;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 public class StuConsume {
+    @TableId
+    private String id;
     // 学号
     private String stuNo;
     // 性别

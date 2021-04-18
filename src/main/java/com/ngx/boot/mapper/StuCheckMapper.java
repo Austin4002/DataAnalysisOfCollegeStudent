@@ -17,4 +17,6 @@ public interface StuCheckMapper extends BaseMapper<StuCheck> {
     List<Integer> getAllMaxTime();
 
     List<Integer> getAllMaxTimeCount();
+
+    List<StuCheck> getStuNoDistinct();
 }

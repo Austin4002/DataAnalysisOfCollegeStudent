@@ -17,9 +17,9 @@ public class StuConsumeServiceImpl extends ServiceImpl<StuConsumeMapper, StuCons
     private StuConsumeMapper stuConsumeMapper;
 
     @Override
-    public List<StuConsume> getStuNoDisctinct() {
+    public List<StuConsume> getStuNoDistinct() {
 
-        List<StuConsume> stuConsumeList =stuConsumeMapper.getStuNoDisctinct();
+        List<StuConsume> stuConsumeList =stuConsumeMapper.getStuNoDistinct();
         return stuConsumeList;
     }
 
@@ -42,4 +42,23 @@ public class StuConsumeServiceImpl extends ServiceImpl<StuConsumeMapper, StuCons
         Integer count = stuConsumeMapper.selectCount(wrapper);
         return count;
     }
+
+    @Override
+    public Integer getAmountByRestaurant(String year, String month,Integer restaurantNumber) {
+        Integer amountByRestaurant = stuConsumeMapper.getAmountByRestaurant(year, month, restaurantNumber);
+        if (amountByRestaurant ==null){
+            return 0;
+        }
+        return amountByRestaurant;
+    }
+
+    @Override
+    public Integer getAmountByRestaurantAndWindow(String year, String month, Integer restaurantNumber, Integer windowNumber) {
+        Integer amountByRestaurantAndWindow = stuConsumeMapper.getAmountByRestaurantAndWindow(year, month, restaurantNumber, windowNumber);
+        if (amountByRestaurantAndWindow ==null){
+            return 0;
+        }
+        return amountByRestaurantAndWindow;
+    }
+
 }

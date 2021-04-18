@@ -27,7 +27,7 @@ public class ScoreKmeans {
     static double[][] new_center = new double[nums][2];    //计算出来的新中心点
 
 
-    public ArrayList<Double> scomeans(String filepath) throws Exception {
+    public static ArrayList<Double> scomeans(String filepath, String filepath2) throws Exception {
 
         ArrayList<String> arrayList = new ArrayList<String>();
         File file = new File(filepath);
@@ -51,7 +51,7 @@ public class ScoreKmeans {
 
         SparkConf conf = new SparkConf().setAppName("kmeans").setMaster("local[*]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        JavaRDD<String> datas = jsc.textFile("hdfs://192.168.195.11:9000/data/kdata2.dat");     //从hdfs上读取data
+        JavaRDD<String> datas = jsc.textFile(filepath2);     //从hdfs上读取data
         ArrayList<Double> fin = new ArrayList<>();
 
         while(true) {
@@ -132,7 +132,7 @@ public class ScoreKmeans {
             if(distance == 0.0) {
                 //finished
                 for(int j = 0;j<nums;j++) {
-                    System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
+                    //System.out.println("the final center: "+"  "+center[j][0]+" , "+center[j][1]);
                     fin.add(center[j][1]);
                 }
                 break;
@@ -148,6 +148,7 @@ public class ScoreKmeans {
             }
         }
 
+        jsc.close();
         return fin;
 
     }

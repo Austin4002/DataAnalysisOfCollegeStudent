@@ -51,7 +51,7 @@ public class BehKmeans {
 
         SparkConf conf = new SparkConf().setAppName("kmeans").setMaster("local[*]");
         JavaSparkContext jsc = new JavaSparkContext(conf);
-        JavaRDD<String> datas = jsc.textFile("hdfs://192.168.195.11:9000/data/kdata2.dat");     //从hdfs上读取data
+        JavaRDD<String> datas = jsc.textFile(filepath2);     //从hdfs上读取data
         ArrayList<Double> fin = new ArrayList<>();
 
         while(true) {
@@ -147,6 +147,8 @@ public class BehKmeans {
                 }
             }
         }
+
+        jsc.close();
 
         return fin;
 

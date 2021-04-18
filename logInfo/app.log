@@ -1,212 +1,269 @@
-2021-04-17 11:18:04,322 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ------------->getRandomByBorTime被执行
-2021-04-17 11:18:09,835 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'borrowCluster': Invocation of init method failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'null' in 'class com.ngx.boot.bean.StuInfo'
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:769)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
-	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:17)
+2021-04-18 09:04:17,175 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.ngx.boot.controller.UserController.getPortrait(UserController.java:67)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'null' in 'class com.ngx.boot.bean.StuInfo'
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
-	at com.sun.proxy.$Proxy62.update(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
-	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:65)
-	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
-	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
-	at com.sun.proxy.$Proxy63.updateById(Unknown Source)
-	at com.baomidou.mybatisplus.extension.service.IService.updateById(IService.java:148)
-	at com.baomidou.mybatisplus.extension.service.IService$$FastClassBySpringCGLIB$$f8525d18.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
-	at com.ngx.boot.service.impl.StuInfoServiceImpl$$EnhancerBySpringCGLIB$$44a6f926.updateById(<generated>)
-	at com.ngx.boot.utils.BorrowCluster.lambda$generateStuTags$1(BorrowCluster.java:120)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at com.ngx.boot.utils.BorrowCluster.generateStuTags(BorrowCluster.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
-	... 24 common frames omitted
-Caused by: org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'null' in 'class com.ngx.boot.bean.StuInfo'
-	at org.apache.ibatis.reflection.Reflector.getGetInvoker(Reflector.java:374)
-	at org.apache.ibatis.reflection.MetaClass.getGetInvoker(MetaClass.java:164)
-	at org.apache.ibatis.reflection.wrapper.BeanWrapper.getBeanProperty(BeanWrapper.java:162)
-	at org.apache.ibatis.reflection.wrapper.BeanWrapper.get(BeanWrapper.java:49)
-	at org.apache.ibatis.reflection.MetaObject.getValue(MetaObject.java:122)
-	at org.apache.ibatis.reflection.MetaObject.getValue(MetaObject.java:119)
-	at com.baomidou.mybatisplus.core.MybatisParameterHandler.setParameters(MybatisParameterHandler.java:205)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.parameterize(PreparedStatementHandler.java:94)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.parameterize(RoutingStatementHandler.java:64)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
-	at com.sun.proxy.$Proxy79.parameterize(Unknown Source)
-	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.prepareStatement(MybatisSimpleExecutor.java:99)
-	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.doUpdate(MybatisSimpleExecutor.java:55)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at com.baomidou.mybatisplus.core.executor.MybatisCachingExecutor.update(MybatisCachingExecutor.java:85)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
-	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
-	at com.sun.proxy.$Proxy78.update(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
-	... 45 common frames omitted
-2021-04-17 11:22:02,228 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ------------->getRandomByBorTime被执行
-2021-04-17 11:22:07,337 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'borrowCluster': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
-### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE stu_no='201919217'' at line 1
-### The error may exist in com/ngx/boot/mapper/StuInfoMapper.java (best guess)
-### The error may involve com.ngx.boot.mapper.StuInfoMapper.updateById-Inline
-### The error occurred while setting parameters
-### SQL: UPDATE stu_info    WHERE stu_no=?
-### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE stu_no='201919217'' at line 1
-; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE stu_no='201919217'' at line 1
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:769)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
-	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:17)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.jdbc.BadSqlGrammarException: 
-### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE stu_no='201919217'' at line 1
-### The error may exist in com/ngx/boot/mapper/StuInfoMapper.java (best guess)
-### The error may involve com.ngx.boot.mapper.StuInfoMapper.updateById-Inline
-### The error occurred while setting parameters
-### SQL: UPDATE stu_info    WHERE stu_no=?
-### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE stu_no='201919217'' at line 1
-; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE stu_no='201919217'' at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
-	at com.sun.proxy.$Proxy62.update(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
-	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:65)
-	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
-	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
-	at com.sun.proxy.$Proxy64.updateById(Unknown Source)
-	at com.baomidou.mybatisplus.extension.service.IService.updateById(IService.java:148)
-	at com.baomidou.mybatisplus.extension.service.IService$$FastClassBySpringCGLIB$$f8525d18.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
-	at com.ngx.boot.service.impl.StuInfoServiceImpl$$EnhancerBySpringCGLIB$$677cea2f.updateById(<generated>)
-	at com.ngx.boot.utils.BorrowCluster.lambda$generateStuTags$1(BorrowCluster.java:120)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at com.ngx.boot.utils.BorrowCluster.generateStuTags(BorrowCluster.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
-	... 24 common frames omitted
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE stu_no='201919217'' at line 1
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
-	at com.mysql.jdbc.Util.getInstance(Util.java:381)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1030)
-	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
-	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
-	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
-	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
-	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:995)
-	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
-	at sun.reflect.GeneratedMethodAccessor87.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
-	at com.sun.proxy.$Proxy81.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
-	at sun.reflect.GeneratedMethodAccessor109.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
-	at com.sun.proxy.$Proxy79.update(Unknown Source)
-	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.doUpdate(MybatisSimpleExecutor.java:56)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at com.baomidou.mybatisplus.core.executor.MybatisCachingExecutor.update(MybatisCachingExecutor.java:85)
-	at sun.reflect.GeneratedMethodAccessor100.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.ibatis.plugin.Invocation.proceed(Invocation.java:49)
-	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:106)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
-	at com.sun.proxy.$Proxy78.update(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
-	at sun.reflect.GeneratedMethodAccessor99.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
-	... 45 common frames omitted
-2021-04-17 11:26:36,139 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ------------->getRandomByBorTime被执行
-2021-04-17 11:26:40,845 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ---------------->generateStuTags被执行
-2021-04-17 11:29:57,021 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ------------->getRandomByBorTime被执行
-2021-04-17 11:30:03,180 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ---------------->generateStuTags被执行
-2021-04-17 11:31:27,518 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ------------->getRandomByBorTime被执行
-2021-04-17 11:31:32,902 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ---------------->generateStuTags被执行
-2021-04-17 14:13:19,875 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-04-18 09:17:48,090 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->
+2021-04-18 09:17:48,108 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->
+2021-04-18 09:18:57,154 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->
+2021-04-18 09:18:57,167 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->
+2021-04-18 09:19:39,802 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 09:19:39,811 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 09:19:51,079 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 09:19:51,087 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 09:19:59,407 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 09:19:59,420 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 09:21:58,944 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 09:21:58,953 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 11:00:41,989 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:41,996 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,001 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,007 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,013 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,020 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,028 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,039 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,048 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,055 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,062 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,068 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,074 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,081 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,087 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,093 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,099 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,104 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,108 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,114 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,121 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,128 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,134 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,139 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,143 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,148 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,153 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,158 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,162 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,168 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,173 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,177 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,182 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,189 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,195 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,200 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,205 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,210 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,214 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,251 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,263 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,275 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,285 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,290 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,296 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,302 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,311 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,318 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,329 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,336 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,342 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,347 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,352 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,357 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,361 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,366 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,372 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,377 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,382 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,386 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,391 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,396 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,400 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,405 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,410 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,415 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,420 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,427 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,435 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,439 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,445 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,452 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,458 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,464 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,470 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,476 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,481 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,486 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,491 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,496 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,501 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,505 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,510 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,515 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,519 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,523 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,530 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,537 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,543 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,548 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,553 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,558 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,563 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,569 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,574 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,579 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,584 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,589 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,595 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,600 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,607 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,612 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,618 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,636 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,643 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,648 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,653 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,657 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,661 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,666 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,671 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,676 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,680 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,685 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,689 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,697 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,702 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,707 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,712 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,717 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,723 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,728 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,734 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,740 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,745 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,752 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,758 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,765 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,770 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,774 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,778 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,782 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,785 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,789 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,794 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,798 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,802 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,808 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,812 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,817 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,824 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,830 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,835 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,840 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,843 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,848 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,855 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,860 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,865 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,870 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,874 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,878 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,881 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,886 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,889 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,893 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,897 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,901 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,905 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,909 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,914 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,919 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,923 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,928 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,932 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,937 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,942 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,946 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,951 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,955 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,960 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,964 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,969 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,973 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,978 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,982 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,986 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,990 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,994 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:42,998 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,001 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,005 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,009 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,012 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,016 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,020 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,024 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,028 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,036 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,041 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,049 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,054 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,060 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,066 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,070 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,074 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,077 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,081 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,086 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:00:43,090 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:02:17,103 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'consumeCluster': Invocation of init method failed; nested exception is java.lang.NullPointerException
 	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
@@ -227,14 +284,14 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
-	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:17)
+	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:15)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
 Caused by: java.lang.NullPointerException: null
-	at com.ngx.boot.utils.ConsumeCluster.generateStuTags(ConsumeCluster.java:101)
+	at com.ngx.boot.utils.ConsumeCluster.generateStuScoreTags(ConsumeCluster.java:97)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -243,29 +300,525 @@ Caused by: java.lang.NullPointerException: null
 	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
 	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
 	... 24 common frames omitted
-2021-04-17 14:28:53,045 [http-nio-8080-exec-3] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=123, password=123)
-2021-04-17 14:52:03,382 [http-nio-8080-exec-2] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=123, password=123)
-2021-04-17 14:53:18,533 [http-nio-8080-exec-2] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 14:53:22,017 [http-nio-8080-exec-3] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 14:53:23,149 [http-nio-8080-exec-4] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 14:53:23,399 [http-nio-8080-exec-5] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 14:53:24,037 [http-nio-8080-exec-7] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 14:53:24,556 [http-nio-8080-exec-6] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 14:53:24,815 [http-nio-8080-exec-9] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 14:57:57,462 [http-nio-8080-exec-5] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=sad, password=sd)
-2021-04-17 14:57:57,851 [http-nio-8080-exec-7] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=sad, password=sd)
-2021-04-17 14:57:58,554 [http-nio-8080-exec-6] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=sad, password=sd)
-2021-04-17 14:57:58,844 [http-nio-8080-exec-9] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=sad, password=sd)
-2021-04-17 14:57:59,416 [http-nio-8080-exec-8] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=sad, password=sd)
-2021-04-17 15:08:51,554 [http-nio-8080-exec-10] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=23, password=123)
-2021-04-17 15:10:51,625 [http-nio-8080-exec-1] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 15:10:54,335 [http-nio-8080-exec-2] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 15:11:36,607 [http-nio-8080-exec-2] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
-2021-04-17 17:54:21,550 [http-nio-8080-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+2021-04-18 11:04:55,665 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'consumeCluster': Invocation of init method failed; nested exception is java.lang.NullPointerException
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:769)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
+	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:15)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.NullPointerException: null
+	at com.ngx.boot.utils.ConsumeCluster.generateStuScoreTags(ConsumeCluster.java:97)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 24 common frames omitted
+2021-04-18 11:08:09,388 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - bound_max--->28.0,bound_min--->15.0
+2021-04-18 11:08:09,985 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:10:24,894 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'consumeCluster': Invocation of init method failed; nested exception is java.lang.NullPointerException
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:769)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
+	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:15)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.NullPointerException: null
+	at com.ngx.boot.utils.ConsumeCluster.generateStuScoreTags(ConsumeCluster.java:98)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 24 common frames omitted
+2021-04-18 11:32:08,577 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - bound_max--->28.0,bound_min--->14.0
+2021-04-18 11:32:09,160 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags被执行
+2021-04-18 11:32:09,687 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2021-04-18 11:36:25,347 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags被执行
+2021-04-18 11:36:25,876 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2021-04-18 11:40:32,552 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->25.0,behavior_min--->8.0
+2021-04-18 11:40:33,352 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags被执行
+2021-04-18 11:44:13,426 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->0.0,score_min--->0.0
+2021-04-18 11:44:13,460 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,464 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,467 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,470 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,474 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,477 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,481 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,485 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,489 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,492 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,496 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,499 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,503 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,507 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,511 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,519 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,522 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,526 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,529 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,533 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,537 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,541 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,544 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,548 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,551 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,555 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,558 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,562 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,565 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,569 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,572 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,577 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,580 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,583 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,587 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,591 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,594 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,598 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,604 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,608 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,611 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,616 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,621 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,625 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,628 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,632 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,636 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,641 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,646 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,651 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,656 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,660 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,665 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,669 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,673 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,676 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,682 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,686 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,690 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,696 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,700 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,707 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,710 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,715 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,720 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,724 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,728 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,732 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,735 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,737 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,742 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,745 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,748 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,752 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,755 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,758 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,761 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,765 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,769 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,772 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,776 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,779 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,782 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,785 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,789 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,792 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,795 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,798 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,801 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,804 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,807 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,810 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,814 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,818 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,823 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,826 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,829 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,832 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,834 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,838 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,841 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,844 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,848 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,852 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,854 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,858 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,862 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,865 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,869 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,873 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,876 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,879 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,882 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,886 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,889 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,892 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,896 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,900 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,903 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,908 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,911 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,915 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,920 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,924 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,929 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,933 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,936 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,940 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,945 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,948 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,952 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,953 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,957 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,960 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,963 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,966 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,968 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,971 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,974 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,977 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,979 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,981 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,984 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,987 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,990 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,992 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,995 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:13,998 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,001 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,004 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,007 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,010 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,013 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,017 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,020 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,023 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,026 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,029 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,032 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,035 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,038 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,042 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,048 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,052 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,055 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,058 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,061 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,065 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,068 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,071 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,075 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,078 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,081 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,085 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,088 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,091 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,095 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,098 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,102 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,105 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,108 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,112 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,117 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,121 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,126 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,130 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,135 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,139 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,144 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,151 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,155 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,160 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,163 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,166 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,169 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,171 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,175 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,177 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,180 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:44:14,183 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:46:49,366 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->0.0,score_min--->0.0
+2021-04-18 11:46:49,770 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 11:53:31,547 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->80.0,behavior_min--->0.0
+2021-04-18 11:53:32,187 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags执行完毕
+2021-04-18 11:56:42,221 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->80.0,behavior_min--->0.0
+2021-04-18 11:56:42,899 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags执行完毕
+2021-04-18 12:29:27,724 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->26.0,behavior_min--->9.0
+2021-04-18 12:29:28,378 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags执行完毕
+2021-04-18 12:33:36,587 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->27.0,behavior_min--->10.0
+2021-04-18 12:33:37,259 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags执行完毕
+2021-04-18 12:33:37,370 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'scoreCluster': Invocation of init method failed; nested exception is org.apache.spark.SparkException: Only one SparkContext may be running in this JVM (see SPARK-2243). To ignore this error, set spark.driver.allowMultipleContexts = true. The currently running SparkContext was created at:
+org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+com.ngx.boot.algorithm.kmeans.BehKmeans.behmeans(BehKmeans.java:53)
+com.ngx.boot.utils.BehaviorCluster.getRandomBySumTime(BehaviorCluster.java:76)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.lang.reflect.Method.invoke(Method.java:498)
+org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:769)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
+	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:15)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.apache.spark.SparkException: Only one SparkContext may be running in this JVM (see SPARK-2243). To ignore this error, set spark.driver.allowMultipleContexts = true. The currently running SparkContext was created at:
+org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+com.ngx.boot.algorithm.kmeans.BehKmeans.behmeans(BehKmeans.java:53)
+com.ngx.boot.utils.BehaviorCluster.getRandomBySumTime(BehaviorCluster.java:76)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.lang.reflect.Method.invoke(Method.java:498)
+org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:422)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1778)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.apache.spark.SparkContext$$anonfun$assertNoOtherContextIsRunning$2.apply(SparkContext.scala:2479)
+	at org.apache.spark.SparkContext$$anonfun$assertNoOtherContextIsRunning$2.apply(SparkContext.scala:2475)
+	at scala.Option.foreach(Option.scala:257)
+	at org.apache.spark.SparkContext$.assertNoOtherContextIsRunning(SparkContext.scala:2475)
+	at org.apache.spark.SparkContext$.markPartiallyConstructed(SparkContext.scala:2564)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:85)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at com.ngx.boot.algorithm.kmeans.ScoreKmeans.scomeans(ScoreKmeans.java:53)
+	at com.ngx.boot.utils.ScoreCluster.getScoreByGPA(ScoreCluster.java:86)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 24 common frames omitted
+2021-04-18 12:37:30,818 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->25.0,behavior_min--->8.0
+2021-04-18 12:37:31,639 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags执行完毕
+2021-04-18 12:37:32,261 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->0.0,score_min--->0.0
+2021-04-18 12:37:32,584 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 12:42:56,550 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->25.0,behavior_min--->8.0
+2021-04-18 12:42:57,245 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags执行完毕
+2021-04-18 12:42:57,605 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->0.0,score_min--->0.0
+2021-04-18 12:42:57,886 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 12:49:55,616 [main] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->0.0,score_min--->0.0
+2021-04-18 12:49:56,130 [main] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 12:58:16,503 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 12:58:16,934 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 12:59:11,071 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->4.0,score_min--->3.0
+2021-04-18 12:59:11,694 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:00:04,698 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:00:05,300 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:18:03,597 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.ngx.boot.controller.UserController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@1b67963e]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:289)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1201)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:564)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:769)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
+	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:15)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.ngx.boot.controller.UserController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@1b67963e]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:481)
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:321)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:267)
+	... 24 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/ngx/boot/bean/StuScore
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+	at java.lang.Class.getDeclaredMethods(Class.java:1975)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:463)
+	... 26 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.ngx.boot.bean.StuScore
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:338)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:145)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	... 30 common frames omitted
+2021-04-18 13:18:08,273 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:18:08,953 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:18:28,772 [main] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->4.0,score_min--->3.0
+2021-04-18 13:18:29,912 [main] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:21:12,910 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->4.0,score_min--->3.0
+2021-04-18 13:21:13,409 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:21:24,458 [main] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:21:25,345 [main] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:22:57,798 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:22:58,370 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:24:11,435 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:24:11,938 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:26:26,835 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:26:27,576 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:29:44,072 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:29:44,466 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:31:06,836 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:31:07,211 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:34:04,403 [main] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->0.0
+2021-04-18 13:34:05,053 [main] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:35:55,666 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->2.0,score_min--->1.0
+2021-04-18 13:35:56,270 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:37:09,251 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->2.0,score_min--->1.0
+2021-04-18 13:37:09,637 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:43:27,471 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->2.0,score_min--->1.0
+2021-04-18 13:43:27,839 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:47:12,841 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->2.0,score_min--->1.5
+2021-04-18 13:47:13,226 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:49:18,819 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->2.0
+2021-04-18 13:49:19,376 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:53:32,991 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - behavior_max--->25.0,behavior_min--->8.0
+2021-04-18 13:53:33,683 [restartedMain] ERROR com.ngx.boot.utils.BehaviorCluster - ---------------->generateStuBehaviorTags执行完毕
+2021-04-18 13:53:33,684 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ------------->getRandomByBorTime被执行
+2021-04-18 13:53:34,659 [restartedMain] ERROR com.ngx.boot.utils.BorrowCluster - ---------------->generateStuConsumeTags执行完毕
+2021-04-18 13:53:35,336 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - consume_max--->27.0,consume_min--->14.0
+2021-04-18 13:53:35,828 [restartedMain] ERROR com.ngx.boot.utils.ConsumeCluster - ---------------->generateStuConsumeTags执行完毕
+2021-04-18 13:53:36,313 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - score_max--->3.0,score_min--->2.0
+2021-04-18 13:53:36,679 [restartedMain] ERROR com.ngx.boot.utils.ScoreCluster - ---------------->generateStuScoreTags执行完毕
+2021-04-18 13:55:51,437 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 13:55:51,448 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 13:57:41,507 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 13:57:41,520 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:10:07,851 [http-nio-8080-exec-5] ERROR c.n.boot.controller.LoginController - ---------------------------------------->LoginUser(username=2017001, password=123)
+2021-04-18 14:10:42,206 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:10:42,214 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:11:38,006 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:11:38,019 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:11:47,165 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
 java.lang.NullPointerException: null
-	at com.ngx.boot.controller.UserController.lambda$getPortrait$0(UserController.java:84)
-	at java.util.ArrayList.forEach(ArrayList.java:1257)
-	at com.ngx.boot.controller.UserController.getPortrait(UserController.java:77)
+	at com.ngx.boot.controller.UserController.getPortrait(UserController.java:52)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -316,9 +869,322 @@ java.lang.NullPointerException: null
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
-2021-04-17 17:57:07,980 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.ArrayIndexOutOfBoundsException: 0] with root cause
-java.lang.ArrayIndexOutOfBoundsException: 0
-	at com.ngx.boot.controller.UserController.getPortrait(UserController.java:226)
+2021-04-18 14:12:01,868 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:01,876 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:12:46,029 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:46,036 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:12:47,980 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:47,989 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:12:49,113 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:49,120 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:12:51,075 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:51,082 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:12:53,190 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:53,197 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:12:54,826 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:54,839 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:12:59,386 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:12:59,399 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:15:33,585 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:15:33,594 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:15:37,232 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:15:37,241 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:15:39,442 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:15:39,454 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:15:40,763 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:15:40,770 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:16:01,876 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:16:01,883 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:16:04,601 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:16:04,609 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:16:06,386 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:16:06,393 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:21:23,029 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:21:23,041 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:21:32,431 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:21:32,438 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:21:35,873 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:21:35,882 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:21:39,802 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:21:39,809 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:21:43,152 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:21:43,159 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:21:45,520 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:21:45,530 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:21:52,171 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:21:52,179 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:22:03,069 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:22:03,080 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:22:12,349 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:22:12,356 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:22:49,858 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:22:49,867 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:23:09,329 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->13,maxTimesize--->200,inTime--->6.5
+2021-04-18 14:23:09,337 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:23:36,242 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:23:36,249 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:24:16,830 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:24:16,839 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:24:18,666 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:24:18,673 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:27:01,089 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:27:01,097 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:27:42,704 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:27:42,712 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:27:58,142 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:27:58,149 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:30:00,707 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:30:00,715 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:30:11,405 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:30:11,413 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:30:18,761 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:30:18,774 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:32:18,163 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:32:18,172 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:33:38,512 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:33:38,520 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:33:41,445 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:33:41,452 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:33:47,215 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:33:47,223 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:33:54,328 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:33:54,341 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:33:58,865 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:33:58,872 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:34:15,632 [http-nio-8080-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.ngx.boot.controller.UserController.getPortrait(UserController.java:52)
+	at sun.reflect.GeneratedMethodAccessor115.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-04-18 14:34:19,558 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:34:19,565 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:34:22,921 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->22,maxTimesize--->200,inTime--->11.0
+2021-04-18 14:34:22,931 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:34:26,548 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->22,maxTimesize--->200,inTime--->11.0
+2021-04-18 14:34:26,555 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:34:31,136 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:34:31,143 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:34:37,554 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:34:37,561 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:35:23,178 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:35:23,191 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:35:25,591 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:35:25,604 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:35:26,825 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:35:26,834 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:35:27,998 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:35:28,007 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:35:29,301 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:35:29,309 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:36:38,541 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:36:38,548 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:37:00,735 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:37:00,744 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:37:13,528 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:37:13,535 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:37:20,221 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:37:20,229 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:37:27,117 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:37:27,125 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:37:43,849 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:37:43,856 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:37:51,477 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 14:37:51,484 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:38:37,959 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 14:38:37,966 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:39:17,422 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:39:17,430 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:39:35,199 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->13,maxTimesize--->200,inTime--->6.5
+2021-04-18 14:39:35,214 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:39:47,130 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:39:47,137 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->0,maxTimeCountsize--->200,inFrequency--->0.0
+2021-04-18 14:46:18,000 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 14:46:18,014 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->54,maxTimeCountsize--->200,inFrequency--->27.0
+2021-04-18 15:02:33,385 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:02:33,397 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:02:44,653 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:02:44,660 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:02:52,765 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:02:52,773 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:03:00,495 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:03:00,502 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:03:03,143 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:03:03,150 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:03:04,568 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:03:04,581 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:03:11,439 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:03:11,446 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:03:55,389 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:03:55,397 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:04:06,932 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 15:04:06,939 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->54,maxTimeCountsize--->200,inFrequency--->27.0
+2021-04-18 15:04:17,989 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:04:17,997 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:04:27,491 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:04:27,504 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->18,maxTimeCountsize--->200,inFrequency--->9.0
+2021-04-18 15:04:33,025 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 15:04:33,038 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->54,maxTimeCountsize--->200,inFrequency--->27.0
+2021-04-18 15:05:04,297 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 15:05:04,305 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:05:33,562 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 15:05:33,569 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:06:03,523 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:06:03,531 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:06:32,433 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 15:06:32,441 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:06:46,310 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 15:06:46,318 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:06:55,291 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:06:55,298 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:07:16,186 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:07:16,193 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->109,maxTimeCountsize--->200,inFrequency--->54.50000000000001
+2021-04-18 15:07:45,745 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:07:45,754 [http-nio-8080-exec-8] ERROR c.n.boot.controller.UserController - count2--->109,maxTimeCountsize--->200,inFrequency--->54.50000000000001
+2021-04-18 15:08:07,241 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 15:08:07,250 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->18,maxTimeCountsize--->200,inFrequency--->9.0
+2021-04-18 15:08:31,446 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->2,maxTimesize--->200,inTime--->1.0
+2021-04-18 15:08:31,456 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:08:36,474 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->2,maxTimesize--->200,inTime--->1.0
+2021-04-18 15:08:36,486 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:08:43,195 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count1--->2,maxTimesize--->200,inTime--->1.0
+2021-04-18 15:08:43,202 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:11:47,427 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count1--->2,maxTimesize--->200,inTime--->1.0
+2021-04-18 15:11:47,440 [http-nio-8080-exec-1] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:12:03,771 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->5,maxTimesize--->200,inTime--->2.5
+2021-04-18 15:12:03,779 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->54,maxTimeCountsize--->200,inFrequency--->27.0
+2021-04-18 15:12:17,025 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count1--->200,maxTimesize--->200,inTime--->100.0
+2021-04-18 15:12:17,032 [http-nio-8080-exec-3] ERROR c.n.boot.controller.UserController - count2--->200,maxTimeCountsize--->200,inFrequency--->100.0
+2021-04-18 15:20:49,959 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:20:49,966 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->109,maxTimeCountsize--->200,inFrequency--->54.50000000000001
+2021-04-18 15:20:57,909 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:20:57,917 [http-nio-8080-exec-6] ERROR c.n.boot.controller.UserController - count2--->109,maxTimeCountsize--->200,inFrequency--->54.50000000000001
+2021-04-18 15:20:59,049 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:20:59,057 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->109,maxTimeCountsize--->200,inFrequency--->54.50000000000001
+2021-04-18 15:21:00,066 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:21:00,075 [http-nio-8080-exec-9] ERROR c.n.boot.controller.UserController - count2--->109,maxTimeCountsize--->200,inFrequency--->54.50000000000001
+2021-04-18 15:21:00,974 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count1--->91,maxTimesize--->200,inTime--->45.5
+2021-04-18 15:21:00,982 [http-nio-8080-exec-10] ERROR c.n.boot.controller.UserController - count2--->109,maxTimeCountsize--->200,inFrequency--->54.50000000000001
+2021-04-18 15:21:18,794 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 15:21:18,802 [http-nio-8080-exec-2] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:21:21,134 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 15:21:21,142 [http-nio-8080-exec-4] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:21:23,226 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 15:21:23,238 [http-nio-8080-exec-5] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 15:21:43,290 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count1--->50,maxTimesize--->200,inTime--->25.0
+2021-04-18 15:21:43,298 [http-nio-8080-exec-7] ERROR c.n.boot.controller.UserController - count2--->30,maxTimeCountsize--->200,inFrequency--->15.0
+2021-04-18 20:53:17,166 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'con_year' in 'where clause'
+### The error may exist in com/ngx/boot/mapper/StuConsumeMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT COUNT( * ) FROM stu_consume     WHERE (con_restaurant = ? AND con_year = ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'con_year' in 'where clause'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'con_year' in 'where clause'] with root cause
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'con_year' in 'where clause'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1030)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:995)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:497)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy136.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy112.query(Unknown Source)
+	at com.baomidou.mybatisplus.core.executor.MybatisSimpleExecutor.doQuery(MybatisSimpleExecutor.java:69)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at com.baomidou.mybatisplus.core.executor.MybatisCachingExecutor.query(MybatisCachingExecutor.java:165)
+	at com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor.intercept(MybatisPlusInterceptor.java:81)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at com.sun.proxy.$Proxy111.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	at com.sun.proxy.$Proxy60.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:159)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:90)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy128.selectCount(Unknown Source)
+	at com.baomidou.mybatisplus.extension.service.IService.count(IService.java:270)
+	at com.baomidou.mybatisplus.extension.service.IService$$FastClassBySpringCGLIB$$f8525d18.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl$$EnhancerBySpringCGLIB$$239d1a69.count(<generated>)
+	at com.ngx.boot.controller.RestaurantController.analysisRestaurant(RestaurantController.java:60)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -369,3 +1235,357 @@ java.lang.ArrayIndexOutOfBoundsException: 0
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2021-04-18 20:54:41,431 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 20:54:41,435 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 20:54:41,438 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 20:54:41,444 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:07:09,387 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'consumeCluster' defined in file [D:\DataAnalysisOfCollegeStudent\target\classes\com\ngx\boot\cluster\ConsumeCluster.class]: Post-processing of merged bean definition failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.ngx.boot.cluster.ConsumeCluster] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@357fff1e]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:144)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:769)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:426)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:326)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1313)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)
+	at com.ngx.boot.AnalysisApplication.main(AnalysisApplication.java:15)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.ngx.boot.cluster.ConsumeCluster] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@357fff1e]
+	at org.springframework.util.ReflectionUtils.getDeclaredFields(ReflectionUtils.java:739)
+	at org.springframework.util.ReflectionUtils.doWithLocalFields(ReflectionUtils.java:671)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.buildResourceMetadata(CommonAnnotationBeanPostProcessor.java:366)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.findResourceMetadata(CommonAnnotationBeanPostProcessor.java:347)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(CommonAnnotationBeanPostProcessor.java:295)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:1098)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:576)
+	... 21 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: Lcom/ngx/boot/service/StuConsumeService;
+	at java.lang.Class.getDeclaredFields0(Native Method)
+	at java.lang.Class.privateGetDeclaredFields(Class.java:2583)
+	at java.lang.Class.getDeclaredFields(Class.java:1916)
+	at org.springframework.util.ReflectionUtils.getDeclaredFields(ReflectionUtils.java:734)
+	... 27 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.ngx.boot.service.StuConsumeService
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:338)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:145)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	... 31 common frames omitted
+2021-04-18 21:07:14,298 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field stuConsumeService in com.ngx.boot.cluster.ConsumeCluster required a bean of type 'com.ngx.boot.service.StuConsumeService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ngx.boot.service.StuConsumeService' in your configuration.
+
+2021-04-18 21:13:40,017 [http-nio-8080-exec-3] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:13:40,027 [http-nio-8080-exec-3] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:13:40,035 [http-nio-8080-exec-3] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:13:40,045 [http-nio-8080-exec-3] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:24:52,992 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:24:53,016 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:24:53,027 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:24:53,038 [http-nio-8080-exec-1] ERROR c.n.b.c.RestaurantController - month不为空
+2021-04-18 21:50:08,557 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Mapper method 'com.ngx.boot.mapper.StuConsumeMapper.getAmountByRestaurantAndWindow attempted to return null from a method with a primitive return type (int).] with root cause
+org.apache.ibatis.binding.BindingException: Mapper method 'com.ngx.boot.mapper.StuConsumeMapper.getAmountByRestaurantAndWindow attempted to return null from a method with a primitive return type (int).
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:106)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy109.getAmountByRestaurantAndWindow(Unknown Source)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl.getAmountByRestaurantAndWindow(StuConsumeServiceImpl.java:53)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl$$FastClassBySpringCGLIB$$d0abda18.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl$$EnhancerBySpringCGLIB$$18224325.getAmountByRestaurantAndWindow(<generated>)
+	at com.ngx.boot.controller.RestaurantController.analysisRestaurant(RestaurantController.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-04-18 21:56:26,817 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Mapper method 'com.ngx.boot.mapper.StuConsumeMapper.getAmountByRestaurantAndWindow attempted to return null from a method with a primitive return type (int).] with root cause
+org.apache.ibatis.binding.BindingException: Mapper method 'com.ngx.boot.mapper.StuConsumeMapper.getAmountByRestaurantAndWindow attempted to return null from a method with a primitive return type (int).
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:106)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy66.getAmountByRestaurantAndWindow(Unknown Source)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl.getAmountByRestaurantAndWindow(StuConsumeServiceImpl.java:58)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl$$FastClassBySpringCGLIB$$d0abda18.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl$$EnhancerBySpringCGLIB$$1b75226e.getAmountByRestaurantAndWindow(<generated>)
+	at com.ngx.boot.controller.RestaurantController.analysisRestaurant(RestaurantController.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-04-18 21:58:19,818 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Mapper method 'com.ngx.boot.mapper.StuConsumeMapper.getAmountByRestaurantAndWindow attempted to return null from a method with a primitive return type (int).] with root cause
+org.apache.ibatis.binding.BindingException: Mapper method 'com.ngx.boot.mapper.StuConsumeMapper.getAmountByRestaurantAndWindow attempted to return null from a method with a primitive return type (int).
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:106)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at com.sun.proxy.$Proxy66.getAmountByRestaurantAndWindow(Unknown Source)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl.getAmountByRestaurantAndWindow(StuConsumeServiceImpl.java:53)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl$$FastClassBySpringCGLIB$$d0abda18.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
+	at com.ngx.boot.service.impl.StuConsumeServiceImpl$$EnhancerBySpringCGLIB$$68433e51.getAmountByRestaurantAndWindow(<generated>)
+	at com.ngx.boot.controller.RestaurantController.analysisRestaurant(RestaurantController.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-04-18 21:59:01,153 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field stuConsumeService in com.ngx.boot.cluster.ConsumeCluster required a bean of type 'com.ngx.boot.service.StuConsumeService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ngx.boot.service.StuConsumeService' in your configuration.
+
+2021-04-18 21:59:11,141 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+java.lang.NullPointerException: null
+	at com.ngx.boot.controller.RestaurantController.analysisRestaurant(RestaurantController.java:94)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2021-04-18 22:00:30,898 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field stuConsumeService in com.ngx.boot.cluster.ConsumeCluster required a bean of type 'com.ngx.boot.service.StuConsumeService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.ngx.boot.service.StuConsumeService' in your configuration.
+

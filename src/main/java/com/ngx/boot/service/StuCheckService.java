@@ -17,4 +17,6 @@ public interface StuCheckService extends IService<StuCheck> {
     List<Integer> getAllMaxTime();
 
     List<Integer> getAllMaxTimeCount();
+
+    List<StuCheck> getStuNoDistinct();
 }

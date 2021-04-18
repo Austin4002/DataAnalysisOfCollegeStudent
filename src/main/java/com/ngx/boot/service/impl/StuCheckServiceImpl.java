@@ -48,4 +48,9 @@ public class StuCheckServiceImpl extends ServiceImpl<StuCheckMapper, StuCheck> i
     public List<Integer> getAllMaxTimeCount() {
         return stuCheckMapper.getAllMaxTimeCount();
     }
+
+    @Override
+    public List<StuCheck> getStuNoDistinct() {
+        return stuCheckMapper.getStuNoDistinct();
+    }
 }

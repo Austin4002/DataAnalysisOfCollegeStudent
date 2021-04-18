@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface StuConsumeService extends IService<StuConsume> {
 
-    List<StuConsume> getStuNoDisctinct();
+    List<StuConsume> getStuNoDistinct();
 
     double getAvgConsumeMoneyByNo(String stuNo);
 
@@ -15,4 +15,7 @@ public interface StuConsumeService extends IService<StuConsume> {
 
     Integer getFrequencyConsumeData(String stuNo);
 
+    Integer getAmountByRestaurant(String year, String month,Integer restaurantNumber);
+
+    Integer getAmountByRestaurantAndWindow(String year, String month, Integer restaurantNumber, Integer windowNumber);
 }

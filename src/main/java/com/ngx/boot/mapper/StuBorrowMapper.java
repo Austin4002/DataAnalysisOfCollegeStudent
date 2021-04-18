@@ -6,7 +6,7 @@ import com.ngx.boot.bean.StuBorrow;
 import java.util.List;
 
 public interface StuBorrowMapper extends BaseMapper<StuBorrow> {
-    List<StuBorrow> getStuNoDisctinct();
+    List<StuBorrow> getStuNoDistinct();
 
     double getAvgBorrowTimeByNo(String stuNo);
 }

@@ -155,6 +155,7 @@ public class BorKmeans {
             }
         }
 
+        jsc.close();
         return fin;
 
     }

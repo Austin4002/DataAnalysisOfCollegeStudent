@@ -17,7 +17,7 @@ public class Restaurant {
     private List<ConType> conAmount;
     //各窗口消费频次
     private List<WindowType> windowFre;
-    //个窗口消费金额
+    //各窗口消费金额
     private List<WindowType> windowAmount;
 
 
