@@ -1,6 +1,9 @@
 package com.ngx.boot;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.ngx.boot.bean.BookInfo;
 import com.ngx.boot.bean.StuBorrow;
+import com.ngx.boot.service.BookInfoService;
 import com.ngx.boot.service.StuBorrowService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -23,6 +26,9 @@ public class AlgorithmTest {
     @Autowired
     private StuBorrowService stuBorrowService;
 
+    @Autowired
+    private BookInfoService bookInfoService;
+
     @Test
     public void generateFile() throws IOException {
 
@@ -41,5 +47,15 @@ public class AlgorithmTest {
         bw.close();
         System.out.println("ok");
 
+    }
+
+    @Test
+//    @Transactional
+    public void testUpdateWrapper(){
+        UpdateWrapper<BookInfo> wrapper = new UpdateWrapper<>();
+        wrapper.eq("book_no",5844);
+        wrapper.set("book_comment",1);
+        boolean update = bookInfoService.update(wrapper);
+        System.out.println(update);
     }
 }

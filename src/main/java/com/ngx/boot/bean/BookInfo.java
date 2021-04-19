@@ -14,6 +14,9 @@ public class BookInfo {
     private String bookName;
     // 书籍类型
     private String bookType;
+    // 推荐指数
+    private Double recommend;
+
     // 数据更新时间
     private Date updatetime;
 

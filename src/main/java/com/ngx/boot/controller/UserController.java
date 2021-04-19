@@ -13,9 +13,7 @@ import com.ngx.boot.vo.survey.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -24,7 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
-//@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -46,7 +44,7 @@ public class UserController {
     private StuBorrowService stuBorrowService;
 
 
-    @GetMapping("/user/portrait")
+    @GetMapping("/portrait")
     public Result getPortrait(@RequestParam(value = "stuId", required = true) String stuId) throws InvocationTargetException, IllegalAccessException {
         Result rs = new Result<>(500, "error");
 
@@ -464,7 +462,7 @@ public class UserController {
         totalScoreWrapper.eq("stu_no", stuId);
         //该同学的成绩记录
         List<StuScore> list = stuScoreService.list(totalScoreWrapper);
-        //该同学的总gpa
+        //该同学的平均gpa
         double aveGPAScore = list.stream()
                 .mapToDouble(StuScore::getStuGpa)
                 .sum() / list.size();
@@ -490,7 +488,7 @@ public class UserController {
         //所有同学的平均成绩
         List<Double> totalAveScoreList = new ArrayList<>();
 
-        ArrayList<Double> aveGPAList = new ArrayList<>();
+        List<Double> aveGPAList = new ArrayList<>();
 
         stuNoDistinct.forEach(item -> {
             QueryWrapper<StuScore> totalPercentWrapper = new QueryWrapper<>();
@@ -560,7 +558,7 @@ public class UserController {
                 .limit(3)
                 .collect(Collectors.toList());
 
-        score.setGoodGradeList(goodGrade);
+        score.setGoodGrade(goodGrade);
 
         ArrayList<GPAList> gpaList = new ArrayList<>();
 
@@ -586,5 +584,16 @@ public class UserController {
 
     }
 
+
+    @PostMapping("/list")
+    public Result getList(@RequestParam("current") String current,@RequestParam("pagesize") String pagesize,
+                          @RequestParam(value = "major",required = false) String major,
+                          @RequestParam(value = "stuId",required = false) String stuId){
+        Result rs = new Result<>(500, "error");
+
+//        rs.setData(current);
+        return rs;
+
+    }
 
 }

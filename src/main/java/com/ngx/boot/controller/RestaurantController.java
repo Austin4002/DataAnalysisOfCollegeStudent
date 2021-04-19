@@ -34,7 +34,7 @@ public class RestaurantController {
     public Result<Restaurant> analysisRestaurant(
             @RequestParam(value = "year", required = true) String year,
             @RequestParam(value = "month", required = false) String month) {
-
+//        System.out.println("month--->"+month);
         Result<Restaurant> rs = new Result<>(500, "error");
 
         Restaurant restaurant = new Restaurant();
@@ -58,16 +58,17 @@ public class RestaurantController {
             QueryWrapper<StuConsume> restaurantFrequencyWrapper = new QueryWrapper<>();
             restaurantFrequencyWrapper.eq("stu_year", year);
             restaurantFrequencyWrapper.eq("con_restaurant", i);
-            if (month != null) {
+            if (month != null && !month.equals("")) {
+//                System.out.println("month不是空");
                 restaurantFrequencyWrapper.eq("con_month", month);
             }
 
             int restaurantFrequency = stuConsumeService.count(restaurantFrequencyWrapper);
             int restaurantAmount = stuConsumeService.getAmountByRestaurant(year, month, i);
             //第i号餐厅消费频次
-            conFre.add(new ConType(i + "号餐厅", restaurantFrequency));
+            conFre.add(new ConType(i + "号餐厅消费频次", restaurantFrequency));
             //第i号餐厅消费金额
-            conAmount.add(new ConType(i + "号餐厅", restaurantAmount));
+            conAmount.add(new ConType(i + "号餐厅消费金额", restaurantAmount));
 
 
             QueryWrapper<StuConsume> windowNumberWrapper = new QueryWrapper<>();
@@ -81,7 +82,7 @@ public class RestaurantController {
             for (int j = 1; j <=windouNumer ; j++) {
                 QueryWrapper<StuConsume> windowFrequencyWrapper = new QueryWrapper<>();
                 windowFrequencyWrapper.eq("stu_year",year);
-                if (month != null) {
+                if (month != null && !month.equals("")) {
                     windowFrequencyWrapper.eq("con_month", month);
                 }
                 windowFrequencyWrapper.eq("con_restaurant", i);
@@ -92,8 +93,8 @@ public class RestaurantController {
                 int windowFreCount = stuConsumeService.count(windowFrequencyWrapper);
                 //i号餐厅j号窗口消费金额
                 int windowAmountCount = stuConsumeService.getAmountByRestaurantAndWindow(year, month, i, j);
-                windowFre.add(new WindowType(j+"号窗口",windowFreCount,i+"号餐厅" ));
-                windowAmount.add(new WindowType(j+"号窗口",windowAmountCount,i+"号餐厅" ));
+                windowFre.add(new WindowType(j+"号窗口",windowFreCount,i+"号餐厅消费频次" ));
+                windowAmount.add(new WindowType(j+"号窗口",windowAmountCount,i+"号餐厅消费金额" ));
             }
 
         }
