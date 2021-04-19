@@ -1,14 +1,12 @@
 package com.ngx.boot.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ngx.boot.bean.BookInfo;
-import com.ngx.boot.bean.StuCheck;
-import com.ngx.boot.bean.StuInfo;
-import com.ngx.boot.bean.StuScore;
+import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
+import com.ngx.boot.vo.survey.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
