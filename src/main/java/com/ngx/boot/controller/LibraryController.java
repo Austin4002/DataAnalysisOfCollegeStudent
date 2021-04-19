@@ -13,6 +13,9 @@ import com.ngx.boot.vo.library.lib.Libcheck;
 import com.ngx.boot.vo.library.lib.Times;
 import com.ngx.boot.vo.library.lib.Treemaps;
 import com.ngx.boot.vo.library.libf.Fre;
+import com.ngx.boot.vo.library.libf.Freque;
+import com.ngx.boot.vo.library.libf.Timee;
+import com.ngx.boot.vo.library.libf.Total;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -248,77 +251,117 @@ public class LibraryController {
         Fre fre = new Fre();
 
         //各年级入馆频次封装进去
-
+        List<Freque> list1 = new ArrayList<>();
         //将年级类型封装进list
-//        QueryWrapper Wrapper1 = new QueryWrapper();
-//        Wrapper1.select("DISTINCT stu_grade");
-//        List<StuInfo> stuInfos = stuInfoService.list(Wrapper1);
-//        List<String> stugrade=stuInfos.stream().map(v->v.getStuGrade()).collect(Collectors.toList());
-
-
         for (int i = 2017; i < 2020; i++) {
             if (Integer.parseInt(year) == i) {
 
+                for (int t = 2016; t < 2020; t++) {
                     QueryWrapper Wrapper2 = new QueryWrapper();
-                    Map<Object, Object> Maps2 = new HashMap<>();
-                    Maps2.put("stu_year",i);
-                    Wrapper2.allEq(Maps2);
+                    Wrapper2.eq("stu_year", i);
+                    Wrapper2.likeRight("stu_no", t);
                     List<StuCheck> stuChecks = stuCheckService.list(Wrapper2);
-                    
-
-
-
-                    double count= stuChecks.stream().mapToInt(item -> (int) item.getStuFrequent()).sum();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    int count1 = stuChecks.stream().mapToInt(item -> (int) item.getStuFrequent()).sum();
+                    Freque freque = new Freque();
+                    String grade = null;
+                    if(t==2016){
+                        grade="大四";
+                    }
+                    if(t==2017){
+                        grade="大三";
+                    }
+                    if(t==2018){
+                        grade="大二";
+                    }
+                    if(t==2019){
+                        grade="大一";
+                    }
+                    freque.setType(grade);
+                    freque.setValue(count1);
+                    list1.add(freque);
+                }
             }
-            else {
-
-            }
+            else {}
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        fre.setFrequency(list1);
 
 
 
         //各年级入馆时长封装进去
 
+        List<Timee> list2 = new ArrayList<>();
+
+        for (int j = 2017; j < 2020; j++) {
+            if (Integer.parseInt(year) == j) {
+                for (int m = 1; m < 3; m++) {
+
+                for (int n = 2016; n < 2020; n++) {
+
+                    QueryWrapper Wrapper3 = new QueryWrapper();
+                    Wrapper3.eq("stu_year", j);
+                    Wrapper3.likeRight("stu_no", n);
+                    Wrapper3.eq("stu_term",m);
+                    List<StuCheck> stuChecks = stuCheckService.list(Wrapper3);
+                    int count2 = stuChecks.stream().mapToInt(item -> (int) item.getSumTime()).sum();
+                    //int count1 = stuChecks.stream().mapToInt(item -> (int) item.getStuFrequent()).sum();
+                    //Freque freque = new Freque();
+                    Timee timee = new Timee();
+                    String grade2 = null;
+                    if(n==2016){
+                        grade2="大四";
+                    }
+                    if(n==2017){
+                        grade2="大三";
+                    }
+                    if(n==2018){
+                        grade2="大二";
+                    }
+                    if(n==2019){
+                        grade2="大一";
+                    }
+                    String terms =null;
+                    if(m==1){
+                        terms="第一学期";
+                    }
+                    if(m==2){
+                        terms="第二学期";
+                    }
+
+                    timee.setGrade(grade2);
+                    timee.setTerm(terms);
+                    timee.setValue(count2);
+                    list2.add(timee);
+                }
+
+                }
+            }
+            else {}
+        }
+        fre.setTime(list2);
+
 
         //每月入馆频次封装进去
+        List<Total> list3 = new ArrayList<>();
 
+        for (int a = 2017; a < 2020; a++) {
+            if (Integer.parseInt(year) == a) {
+                for (int b = 1; b < 13; b++) {
 
-
-
-
-
-
-
+                        QueryWrapper Wrapper3 = new QueryWrapper();
+                        Wrapper3.eq("stu_year", a);
+                        Wrapper3.eq("stu_month",b);
+                        List<StuCheck> stuChecks = stuCheckService.list(Wrapper3);
+                        int count3 = stuChecks.stream().mapToInt(item -> (int) item.getStuFrequent()).sum();
+                        Total total = new Total();
+                        String tt= b+"月";
+                        total.setType(tt);
+                        total.setValue(count3);
+                        list3.add(total);
+                }
+            }
+            else {}
+        }
+        fre.setTotal(list3);
 
         rs.setCode(200);
         rs.setMsg("ok");

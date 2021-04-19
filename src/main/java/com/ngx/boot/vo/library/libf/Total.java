@@ -9,7 +9,7 @@ public class Total {
     //入馆时间
     private String type;
 
-    //入馆时长
+    //入馆频次
     private Integer value;
 
 
