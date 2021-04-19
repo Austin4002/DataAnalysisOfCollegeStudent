@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.boot:spring-boot-starter-json:2.4.4">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../maven/repo/org/springframework/boot/spring-boot-starter-json/2.4.4/spring-boot-starter-json-2.4.4.jar!/" />
+      <root url="jar://F:/environment/repository/org/springframework/boot/spring-boot-starter-json/2.4.4/spring-boot-starter-json-2.4.4.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../maven/repo/org/springframework/boot/spring-boot-starter-json/2.4.4/spring-boot-starter-json-2.4.4-javadoc.jar!/" />
+      <root url="jar://F:/environment/repository/org/springframework/boot/spring-boot-starter-json/2.4.4/spring-boot-starter-json-2.4.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../maven/repo/org/springframework/boot/spring-boot-starter-json/2.4.4/spring-boot-starter-json-2.4.4-sources.jar!/" />
+      <root url="jar://F:/environment/repository/org/springframework/boot/spring-boot-starter-json/2.4.4/spring-boot-starter-json-2.4.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

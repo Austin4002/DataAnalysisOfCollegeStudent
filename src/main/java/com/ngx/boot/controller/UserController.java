@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -48,7 +50,6 @@ public class UserController {
 
         Portrait portrait = new Portrait();
         StuInfo stuInfo = stuInfoService.getById(stuId);
-
         portrait.setStuId(stuId);
         portrait.setStuName(stuInfo.getStuName());
         portrait.setStuGrade(stuInfo.getStuGrade());
@@ -79,7 +80,7 @@ public class UserController {
         //查询学生GPA
         List<StuGPA> stuGPAList = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
-        map.put("stu_no",stuId);
+        map.put("stu_no", stuId);
         List<StuScore> scores = stuScoreService.listByMap(map);
         scores.forEach(item->{
             double score = item.getStuGpa();
@@ -107,9 +108,9 @@ public class UserController {
         //封装消费数据
         List<ConsumeData> consumeDataList = new ArrayList<>();
         //平均消费
-        ConsumeData avgConsumeData =new ConsumeData();
+        ConsumeData avgConsumeData = new ConsumeData();
         avgConsumeData.setName("平均消费");
-        double avgConsume =stuConsumeService.getAvgConsumeMoneyByNo(stuId);
+        double avgConsume = stuConsumeService.getAvgConsumeMoneyByNo(stuId);
         avgConsumeData.setStar(avgConsume);
         //消费峰值
         ConsumeData topConsumeData = new ConsumeData();
@@ -117,7 +118,7 @@ public class UserController {
         double topConsume = stuConsumeService.getMaxConsumeMoneyByNo(stuId);
         topConsumeData.setStar(topConsume);
         //消费频次
-        ConsumeData frequencyConsumeData =new ConsumeData();
+        ConsumeData frequencyConsumeData = new ConsumeData();
         frequencyConsumeData.setName("消费频次");
         Integer frequencyConsume = stuConsumeService.getFrequencyConsumeData(stuId);
         frequencyConsumeData.setStar(frequencyConsume);
@@ -180,10 +181,8 @@ public class UserController {
         Consume consume = new Consume(consumeDataList);
         Learn learn = new Learn(learnDataList);
         Behavior behavior = new Behavior(behaviorDataList);
-        StuBehavior stuBehavior = new StuBehavior(consume,learn,behavior);
+        StuBehavior stuBehavior = new StuBehavior(consume, learn, behavior);
         portrait.setStuBehavior(stuBehavior);
-
-
 
 
         List<TreeMap> treeMapList = new ArrayList<>();
@@ -191,7 +190,7 @@ public class UserController {
         wrapper.select("DISTINCT book_type");
 
         List<BookInfo> list = bookInfoService.list(wrapper);
-        list.forEach(item->{
+        list.forEach(item -> {
             String bookType = item.getBookType();
             QueryWrapper queryWrapper = new QueryWrapper();
             Map<String,String> rvMap = new HashMap<>();
@@ -200,10 +199,9 @@ public class UserController {
             queryWrapper.allEq(rvMap);
 
             int count = stuBorrowService.count(queryWrapper);
-            TreeMap treeMap = new TreeMap(bookType,count);
+            TreeMap treeMap = new TreeMap(bookType, count);
             treeMapList.add(treeMap);
         });
-
 
 
         InLibraryTime inLibraryTime = new InLibraryTime();
@@ -215,7 +213,7 @@ public class UserController {
 //            if (item <= topTime){
 //                count++;
 //            }
-//        });0
+//        });
         int count1 = (int) maxTime.stream().filter(item -> item <= topTime).count();
         double inTime = (double) count1/maxTime.size() * 100;
         log.error("count1--->{},maxTimesize--->{},inTime--->{}",count1,maxTime.size(),inTime);
@@ -234,7 +232,7 @@ public class UserController {
 
 
         QueryWrapper frequencyWrapper = new QueryWrapper();
-        frequencyWrapper.eq("stu_no",stuId);
+        frequencyWrapper.eq("stu_no", stuId);
         List<StuCheck> stuCheckList = stuCheckService.list(frequencyWrapper);
         int arraySize = stuCheckList.size();
         Integer[] monthFre = new Integer[arraySize];
@@ -242,13 +240,231 @@ public class UserController {
             monthFre[i] = stuCheckList.get(i).getStuFrequent();
         }
 
-        portrait.setStuBook(new StuBook(treeMapList,inLibraryTime,inLibraryFrequency,monthFre));
+        portrait.setStuBook(new StuBook(treeMapList, inLibraryTime, inLibraryFrequency, monthFre));
 
         rs.setCode(200);
         rs.setMsg("ok");
         rs.setData(portrait);
         return rs;
     }
+
+
+    @GetMapping("/survey")
+    public Result getSurvey() throws Exception {
+        Result rs = new Result<>(500, "error");
+        Survey survey = new Survey();
+        //将各年级占比封装进去
+        List<Grade> grade = new ArrayList<>();
+        List<String> gradelist = stuInfoService.getGradeNumber();
+        AtomicInteger count1 = new AtomicInteger();
+        AtomicInteger count2= new AtomicInteger();
+        AtomicInteger count3= new AtomicInteger();
+        AtomicInteger count4= new AtomicInteger();
+        gradelist.forEach(item->{
+            if (item.equals("大一")){ count1.getAndIncrement(); }
+            else if(item.equals("大二")){ count2.getAndIncrement(); }
+            else if(item.equals("大三")){ count3.getAndIncrement(); }
+            else if(item.equals("大四")){ count4.getAndIncrement(); }
+        });
+        Grade grade1 = new Grade();
+        Grade grade2 = new Grade();
+        Grade grade3 = new Grade();
+        Grade grade4 = new Grade();
+        grade1.setType("大一");
+        grade1.setValue(count1.intValue());
+        grade2.setType("大二");
+        grade2.setValue(count2.intValue());
+        grade3.setType("大三");
+        grade3.setValue(count3.intValue());
+        grade4.setType("大四");
+        grade4.setValue(count4.intValue());
+        grade.add(grade1);
+        grade.add(grade2);
+        grade.add(grade3);
+        grade.add(grade4);
+        survey.setGrade(grade);
+
+        //将男女占比封装进去
+        List<Gender> gender = new ArrayList<>();
+        List<String> genderlist = stuInfoService.getGenderNumber();
+        AtomicInteger gendercount1 = new AtomicInteger();
+        AtomicInteger gendercount2= new AtomicInteger();
+        genderlist.forEach(v->{
+            if(v.equals("男")){gendercount1.getAndIncrement();}
+            else if(v.equals("女")){ gendercount2.getAndIncrement(); }
+        });
+        Gender gender1 = new Gender();
+        Gender gender2 = new Gender();
+        gender1.setType("男");gender1.setValue(gendercount1.intValue());
+        gender2.setType("女");gender2.setValue(gendercount2.intValue());
+        gender.add(gender1);
+        gender.add(gender2);
+        survey.setGender(gender);
+
+        //将各专业占比封装进去
+        List<Majorss> major = new ArrayList<>();
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.select("DISTINCT stu_major");
+        List<StuInfo> stuInfos = stuInfoService.list(wrapper);
+        List<String> res=stuInfos.stream().map(v->v.getStuMajor()).collect(Collectors.toList());
+        for (int i = 0; i < res.size(); i++) {
+            QueryWrapper majorWrapper = new QueryWrapper();
+            majorWrapper.eq("stu_major",res.get(i));
+            int count = stuInfoService.count(majorWrapper);
+            Majorss majo = new Majorss();
+            majo.setType(res.get(i));
+            majo.setValue(count);
+            major.add(majo);
+    }
+        survey.setMajor(major);
+
+
+        //将餐厅月营业额封装进去
+        List<sConsume> consumes = new ArrayList<>();
+//        QueryWrapper queryWrapper = new QueryWrapper();
+//        Map<String, String> rvMap = new HashMap<>();
+//        rvMap.put("stu_no", "201919201");
+//        rvMap.put("book_type", bookType);
+//        queryWrapper.allEq(rvMap);
+//        int count = stuBorrowService.count(queryWrapper);
+
+        for (int i = 2017; i < 2020; i++) {
+
+            for (int j = 1; j < 11; j++) {
+
+                for (int k = 1; k < 5; k++) {
+
+                QueryWrapper Wrapper1 = new QueryWrapper();
+                Map<Object, Object> resMap = new HashMap<>();
+                //String resno = ""+k;
+                resMap.put("stu_year",i);
+                resMap.put("con_month",j);
+                resMap.put("con_restaurant",k);
+                Wrapper1.allEq(resMap);
+                List<StuConsume> stuConsumes = stuConsumeService.list(Wrapper1);
+                double counts = stuConsumes.stream().mapToInt(item -> (int) item.getConMoney()).sum();
+                sConsume cons = new sConsume();
+                String times = i+"."+j;
+                String resno=null;
+                if(k==1){
+                    resno= "1号餐厅";
+                }
+                else if (k==2){
+                    resno= "2号餐厅";
+                }
+                else if (k==3){
+                    resno= "3号餐厅";
+                }
+                else if (k==4){
+                    resno= "4号餐厅";
+                }
+
+                cons.setDate(times);
+                cons.setType(resno);
+                cons.setValue(counts);
+                consumes.add(cons);
+
+                }
+
+            }
+
+        }
+
+        survey.setConsume(consumes);
+
+        //将学生月阅读量封装进去
+
+//        List<Reading> readings = new ArrayList<>();
+//
+//        for (int i = 2017; i < 2020; i++) {
+//            for (int j = 1; j < 3; j++) {
+//                for (int k = 2016; k < 2020; k++) {
+//
+//                QueryWrapper Wrapper2 = new QueryWrapper();
+//                Map<Object, Object> redMap = new HashMap<>();
+//                redMap.put("stu_year",i);
+//                redMap.put("stu_term",j);
+//                redMap.put("stu_garde",k);
+//                Wrapper2.allEq(redMap);
+//                List<StuBorrow> stuBor= stuBorrowService.list(Wrapper2);
+//                //double countss = StuBorrow.stream().mapToInt(item -> (int) item.getb.sum();
+//                    double countss = stuBor.stream().mapToDouble(StuBorrow::getBorTime).sum();
+//                    String grad = null;
+//                if(k==2016){
+//                    grad="大四";
+//
+//                }
+//                else if(k==2017){
+//                    grad="大三";
+//
+//                }
+//                else if(k==2018){
+//                    grad="大二";
+//
+//                }
+//                else if(k==2019){
+//                    grad="大一";
+//
+//                }
+//                String times =i+"/"+j;
+//                Reading read = new Reading();
+//                read.setTerm(times);
+//                read.setGrade(grad);
+//                read.setReading(countss);
+//
+//
+//
+//
+//                }
+//
+//            }
+//
+//        }
+
+
+
+
+
+
+
+
+        rs.setData(survey);
+        rs.setCode(200);
+        rs.setMsg("ok");
+
+        return rs;
+
+
+    }
+
+
+
+    @GetMapping("/major")
+    public Result getMajor() throws Exception {
+        Result rs = new Result<>(500, "error");
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.select("DISTINCT stu_major");
+        List<StuInfo> majors = stuInfoService.list(queryWrapper);
+
+        List<String> res=majors.stream().map(v->v.getStuMajor()).collect(Collectors.toList());
+
+        rs.setData(res);
+
+        rs.setCode(200);
+        rs.setMsg("ok");
+
+        return rs;
+    }
+
+
+
+
+
+
+
+
+
+
 
     public Result getScore(@RequestParam String stuId){
 
