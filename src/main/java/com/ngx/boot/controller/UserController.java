@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -592,16 +593,18 @@ public class UserController {
 
 
     //学生概况
-    @GetMapping("/info")
+    @PostMapping("/user/info")
     public Result getCondition(@RequestParam Integer current,@RequestParam String major,@RequestParam Integer pageSize,@RequestParam String stuId) {
 
         Result rs = new Result<>(500, "error");
-        Records red = new Records();
+
 
         List<Record> records = new ArrayList<>();
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("stu_major",major);
-        queryWrapper.eq("stu_no",stuId);
+        if(stuId!=null && !stuId.equals("")){
+            queryWrapper.eq("stu_no",stuId);
+        }
         List<StuInfo> stuInfos = stuInfoService.list(queryWrapper);
         stuInfos.forEach(item->{
             Record record = new Record();
@@ -618,18 +621,17 @@ public class UserController {
             record.setStudy(learn);
             records.add(record);
         });
-        red.setRecords(records);
 
 
         //分页
         Page<Record> page = new Page<Record>(current,pageSize);
-        red.setCurrent(current);
-        red.setSize(pageSize);
-        red.setTotal(page.getTotal());
+       // Page<Record> page1 = Record.page(page);
+
 
         rs.setMsg("ok");
         rs.setCode(200);
-        rs.setData(red);
+        //rs.setData(page1);
+        rs.setData(records);
 
         return rs;
 
