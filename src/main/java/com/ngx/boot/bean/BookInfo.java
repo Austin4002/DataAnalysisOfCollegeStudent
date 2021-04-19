@@ -15,6 +15,6 @@ public class BookInfo {
     // 书籍类型
     private String bookType;
     // 数据更新时间
-    private Date update;
+    private Date updatetime;
 
 }

@@ -382,52 +382,44 @@ public class UserController {
 
         //将学生月阅读量封装进去
 
-//        List<Reading> readings = new ArrayList<>();
-//
-//        for (int i = 2017; i < 2020; i++) {
-//            for (int j = 1; j < 3; j++) {
-//                for (int k = 2016; k < 2020; k++) {
-//
-//                QueryWrapper Wrapper2 = new QueryWrapper();
-//                Map<Object, Object> redMap = new HashMap<>();
-//                redMap.put("stu_year",i);
-//                redMap.put("stu_term",j);
-//                redMap.put("stu_garde",k);
-//                Wrapper2.allEq(redMap);
-//                List<StuBorrow> stuBor= stuBorrowService.list(Wrapper2);
-//                //double countss = StuBorrow.stream().mapToInt(item -> (int) item.getb.sum();
-//                    double countss = stuBor.stream().mapToDouble(StuBorrow::getBorTime).sum();
-//                    String grad = null;
-//                if(k==2016){
-//                    grad="大四";
-//
-//                }
-//                else if(k==2017){
-//                    grad="大三";
-//
-//                }
-//                else if(k==2018){
-//                    grad="大二";
-//
-//                }
-//                else if(k==2019){
-//                    grad="大一";
-//
-//                }
-//                String times =i+"/"+j;
-//                Reading read = new Reading();
-//                read.setTerm(times);
-//                read.setGrade(grad);
-//                read.setReading(countss);
-//
-//
-//
-//
-//                }
-//
-//            }
-//
-//        }
+        List<Reading> readings = new ArrayList<>();
+
+        for (int i = 2017; i < 2020; i++) {
+            for (int j = 1; j < 3; j++) {
+                for (int k = 2016; k < 2020; k++) {
+
+                QueryWrapper Wrapper2 = new QueryWrapper();
+                Wrapper2.eq("stu_year",i);
+                Wrapper2.eq("stu_term",j);
+                Wrapper2.likeRight("stu_no",k);
+                List<StuBorrow> stuBor= stuBorrowService.list(Wrapper2);
+                //double countss = StuBorrow.stream().mapToInt(item -> (int) item.getb.sum();
+                    double countss = stuBor.stream().mapToDouble(StuBorrow::getBorTime).sum();
+                    String grad = null;
+                if(k==2016){
+                    grad="大四";
+                }
+                if(k==2017){
+                    grad="大三";
+                }
+                if(k==2018){
+                    grad="大二";
+                }
+                if(k==2019){
+                    grad="大一";
+                }
+                String times =i+"/"+j;
+                Reading read = new Reading();
+                read.setTerm(times);
+                read.setGrade(grad);
+                read.setReading(countss);
+                readings.add(read);
+                }
+
+            }
+
+        }
+        survey.setReading(readings);
 
 
         rs.setData(survey);
