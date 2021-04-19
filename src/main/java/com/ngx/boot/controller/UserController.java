@@ -1,8 +1,11 @@
 package com.ngx.boot.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
+import com.ngx.boot.vo.Records.Record;
+import com.ngx.boot.vo.Records.Records;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
@@ -581,6 +584,52 @@ public class UserController {
         rs.setMsg("ok");
         rs.setCode(200);
         rs.setData(score);
+
+        return rs;
+
+    }
+
+
+
+    //学生概况
+    @GetMapping("/info")
+    public Result getCondition(@RequestParam Integer current,@RequestParam String major,@RequestParam Integer pageSize,@RequestParam String stuId) {
+
+        Result rs = new Result<>(500, "error");
+        Records red = new Records();
+
+        List<Record> records = new ArrayList<>();
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("stu_major",major);
+        queryWrapper.eq("stu_no",stuId);
+        List<StuInfo> stuInfos = stuInfoService.list(queryWrapper);
+        stuInfos.forEach(item->{
+            Record record = new Record();
+            record.setStuId(item.getStuNo());
+            record.setStuName(item.getStuName());
+            record.setStuGender(item.getStuSex());
+            record.setStuGrade(item.getStuGrade());
+            record.setStuMajor(item.getStuMajor());
+            String behavor[] = item.getBehavior().split("-");
+            String consume[] = item.getConsume().split("-");
+            String learn[] = item.getLearn().split("-");
+            record.setBehavior(behavor);
+            record.setConsume(consume);
+            record.setStudy(learn);
+            records.add(record);
+        });
+        red.setRecords(records);
+
+
+        //分页
+        Page<Record> page = new Page<Record>(current,pageSize);
+        red.setCurrent(current);
+        red.setSize(pageSize);
+        red.setTotal(page.getTotal());
+
+        rs.setMsg("ok");
+        rs.setCode(200);
+        rs.setData(red);
 
         return rs;
 
