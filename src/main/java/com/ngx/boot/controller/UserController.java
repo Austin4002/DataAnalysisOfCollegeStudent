@@ -386,7 +386,7 @@ public class UserController {
 //
 //        for (int i = 2017; i < 2020; i++) {
 //            for (int j = 1; j < 3; j++) {
-//                for (int k = 2016; k < 2020; k++) {
+//                for (int k = 1; k < 5; k++) {
 //
 //                QueryWrapper Wrapper2 = new QueryWrapper();
 //                Map<Object, Object> redMap = new HashMap<>();
@@ -398,19 +398,19 @@ public class UserController {
 //                //double countss = StuBorrow.stream().mapToInt(item -> (int) item.getb.sum();
 //                    double countss = stuBor.stream().mapToDouble(StuBorrow::getBorTime).sum();
 //                    String grad = null;
-//                if(k==2016){
+//                if(k==4){
 //                    grad="大四";
 //
 //                }
-//                else if(k==2017){
+//                if(k==3){
 //                    grad="大三";
 //
 //                }
-//                else if(k==2018){
+//                if(k==2){
 //                    grad="大二";
 //
 //                }
-//                else if(k==2019){
+//                if(k==1){
 //                    grad="大一";
 //
 //                }
