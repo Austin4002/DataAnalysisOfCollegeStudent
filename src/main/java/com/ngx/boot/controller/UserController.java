@@ -6,8 +6,12 @@ import com.ngx.boot.service.*;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
+import com.ngx.boot.vo.score.GPAList;
+import com.ngx.boot.vo.score.GoodGrade;
+import com.ngx.boot.vo.score.Score;
 import com.ngx.boot.vo.survey.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,7 +47,7 @@ public class UserController {
 
 
     @GetMapping("/user/portrait")
-    public Result getPortrait(@RequestParam(value = "stuId" ,required = true) String stuId) throws InvocationTargetException, IllegalAccessException {
+    public Result getPortrait(@RequestParam(value = "stuId", required = true) String stuId) throws InvocationTargetException, IllegalAccessException {
         Result rs = new Result<>(500, "error");
 
         Portrait portrait = new Portrait();
@@ -60,14 +64,14 @@ public class UserController {
         String consumeTags = stuInfo.getConsume();
         //查询行为标签
         String behaviorTags = stuInfo.getBehavior();
-        String stuTagsStr ="";
-        if (learnTags != null){
+        String stuTagsStr = "";
+        if (learnTags != null) {
             stuTagsStr += learnTags + "-";
         }
-        if (consumeTags != null){
+        if (consumeTags != null) {
             stuTagsStr += consumeTags + "-";
         }
-        if (behaviorTags != null){
+        if (behaviorTags != null) {
             stuTagsStr += behaviorTags;
         }
 
@@ -80,24 +84,24 @@ public class UserController {
         Map<String, Object> map = new HashMap<>();
         map.put("stu_no", stuId);
         List<StuScore> scores = stuScoreService.listByMap(map);
-        scores.forEach(item->{
+        scores.forEach(item -> {
             double score = item.getStuGpa();
             String term = item.getStuTerm();
             String year = item.getStuYear();
             StuGPA stuGPA = new StuGPA();
             stuGPA.setValue(score);
-            stuGPA.setYear(year+"."+term);
+            stuGPA.setYear(year + "." + term);
             stuGPAList.add(stuGPA);
         });
         portrait.setStuGPA(stuGPAList);
 
         // 创建词云
-        List<StuWord> word =new ArrayList<>();
+        List<StuWord> word = new ArrayList<>();
 
         StuWord stuWord1 = new StuWord(new Random().nextInt(10 - 1) + 1, stuInfo.getStuMajor());
         StuWord stuWord2 = new StuWord(new Random().nextInt(10 - 1) + 1, stuInfo.getStuGrade());
         for (int i = 0; i < stuTags.length; i++) {
-            word.add(new StuWord(new Random().nextInt(10 - 1) + 1,stuTags[i]));
+            word.add(new StuWord(new Random().nextInt(10 - 1) + 1, stuTags[i]));
         }
         word.add(stuWord1);
         word.add(stuWord2);
@@ -191,9 +195,9 @@ public class UserController {
         list.forEach(item -> {
             String bookType = item.getBookType();
             QueryWrapper queryWrapper = new QueryWrapper();
-            Map<String,String> rvMap = new HashMap<>();
-            rvMap.put("stu_no",stuId);
-            rvMap.put("book_type",bookType);
+            Map<String, String> rvMap = new HashMap<>();
+            rvMap.put("stu_no", stuId);
+            rvMap.put("book_type", bookType);
             queryWrapper.allEq(rvMap);
 
             int count = stuBorrowService.count(queryWrapper);
@@ -213,8 +217,8 @@ public class UserController {
 //            }
 //        });
         int count1 = (int) maxTime.stream().filter(item -> item <= topTime).count();
-        double inTime = (double) count1/maxTime.size() * 100;
-        log.error("count1--->{},maxTimesize--->{},inTime--->{}",count1,maxTime.size(),inTime);
+        double inTime = (double) count1 / maxTime.size() * 100;
+        log.error("count1--->{},maxTimesize--->{},inTime--->{}", count1, maxTime.size(), inTime);
         inLibraryTime.setOver(inTime);
 
         //最高入馆次数
@@ -223,10 +227,9 @@ public class UserController {
         List<Integer> maxTimeCount = stuCheckService.getAllMaxTimeCount();
         int count2 = (int) maxTimeCount.stream().filter(item -> item <= topTimeCount).count();
 
-        double inFrequency = (double) count2/maxTimeCount.size() * 100;
-        log.error("count2--->{},maxTimeCountsize--->{},inFrequency--->{}",count2,maxTimeCount.size(),inFrequency);
+        double inFrequency = (double) count2 / maxTimeCount.size() * 100;
+        log.error("count2--->{},maxTimeCountsize--->{},inFrequency--->{}", count2, maxTimeCount.size(), inFrequency);
         inLibraryFrequency.setOver(inFrequency);
-
 
 
         QueryWrapper frequencyWrapper = new QueryWrapper();
@@ -255,14 +258,19 @@ public class UserController {
         List<Grade> grade = new ArrayList<>();
         List<String> gradelist = stuInfoService.getGradeNumber();
         AtomicInteger count1 = new AtomicInteger();
-        AtomicInteger count2= new AtomicInteger();
-        AtomicInteger count3= new AtomicInteger();
-        AtomicInteger count4= new AtomicInteger();
-        gradelist.forEach(item->{
-            if (item.equals("大一")){ count1.getAndIncrement(); }
-            else if(item.equals("大二")){ count2.getAndIncrement(); }
-            else if(item.equals("大三")){ count3.getAndIncrement(); }
-            else if(item.equals("大四")){ count4.getAndIncrement(); }
+        AtomicInteger count2 = new AtomicInteger();
+        AtomicInteger count3 = new AtomicInteger();
+        AtomicInteger count4 = new AtomicInteger();
+        gradelist.forEach(item -> {
+            if (item.equals("大一")) {
+                count1.getAndIncrement();
+            } else if (item.equals("大二")) {
+                count2.getAndIncrement();
+            } else if (item.equals("大三")) {
+                count3.getAndIncrement();
+            } else if (item.equals("大四")) {
+                count4.getAndIncrement();
+            }
         });
         Grade grade1 = new Grade();
         Grade grade2 = new Grade();
@@ -286,15 +294,20 @@ public class UserController {
         List<Gender> gender = new ArrayList<>();
         List<String> genderlist = stuInfoService.getGenderNumber();
         AtomicInteger gendercount1 = new AtomicInteger();
-        AtomicInteger gendercount2= new AtomicInteger();
-        genderlist.forEach(v->{
-            if(v.equals("男")){gendercount1.getAndIncrement();}
-            else if(v.equals("女")){ gendercount2.getAndIncrement(); }
+        AtomicInteger gendercount2 = new AtomicInteger();
+        genderlist.forEach(v -> {
+            if (v.equals("男")) {
+                gendercount1.getAndIncrement();
+            } else if (v.equals("女")) {
+                gendercount2.getAndIncrement();
+            }
         });
         Gender gender1 = new Gender();
         Gender gender2 = new Gender();
-        gender1.setType("男");gender1.setValue(gendercount1.intValue());
-        gender2.setType("女");gender2.setValue(gendercount2.intValue());
+        gender1.setType("男");
+        gender1.setValue(gendercount1.intValue());
+        gender2.setType("女");
+        gender2.setValue(gendercount2.intValue());
         gender.add(gender1);
         gender.add(gender2);
         survey.setGender(gender);
@@ -304,16 +317,16 @@ public class UserController {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.select("DISTINCT stu_major");
         List<StuInfo> stuInfos = stuInfoService.list(wrapper);
-        List<String> res=stuInfos.stream().map(v->v.getStuMajor()).collect(Collectors.toList());
+        List<String> res = stuInfos.stream().map(v -> v.getStuMajor()).collect(Collectors.toList());
         for (int i = 0; i < res.size(); i++) {
             QueryWrapper majorWrapper = new QueryWrapper();
-            majorWrapper.eq("stu_major",res.get(i));
+            majorWrapper.eq("stu_major", res.get(i));
             int count = stuInfoService.count(majorWrapper);
             Majorss majo = new Majorss();
             majo.setType(res.get(i));
             majo.setValue(count);
             major.add(majo);
-    }
+        }
         survey.setMajor(major);
 
 
@@ -332,35 +345,32 @@ public class UserController {
 
                 for (int k = 1; k < 5; k++) {
 
-                QueryWrapper Wrapper1 = new QueryWrapper();
-                Map<Object, Object> resMap = new HashMap<>();
-                //String resno = ""+k;
-                resMap.put("stu_year",i);
-                resMap.put("con_month",j);
-                resMap.put("con_restaurant",k);
-                Wrapper1.allEq(resMap);
-                List<StuConsume> stuConsumes = stuConsumeService.list(Wrapper1);
-                double counts = stuConsumes.stream().mapToInt(item -> (int) item.getConMoney()).sum();
-                sConsume cons = new sConsume();
-                String times = i+"."+j;
-                String resno=null;
-                if(k==1){
-                    resno= "1号餐厅";
-                }
-                else if (k==2){
-                    resno= "2号餐厅";
-                }
-                else if (k==3){
-                    resno= "3号餐厅";
-                }
-                else if (k==4){
-                    resno= "4号餐厅";
-                }
+                    QueryWrapper Wrapper1 = new QueryWrapper();
+                    Map<Object, Object> resMap = new HashMap<>();
+                    //String resno = ""+k;
+                    resMap.put("stu_year", i);
+                    resMap.put("con_month", j);
+                    resMap.put("con_restaurant", k);
+                    Wrapper1.allEq(resMap);
+                    List<StuConsume> stuConsumes = stuConsumeService.list(Wrapper1);
+                    double counts = stuConsumes.stream().mapToInt(item -> (int) item.getConMoney()).sum();
+                    sConsume cons = new sConsume();
+                    String times = i + "." + j;
+                    String resno = null;
+                    if (k == 1) {
+                        resno = "1号餐厅";
+                    } else if (k == 2) {
+                        resno = "2号餐厅";
+                    } else if (k == 3) {
+                        resno = "3号餐厅";
+                    } else if (k == 4) {
+                        resno = "4号餐厅";
+                    }
 
-                cons.setDate(times);
-                cons.setType(resno);
-                cons.setValue(counts);
-                consumes.add(cons);
+                    cons.setDate(times);
+                    cons.setType(resno);
+                    cons.setValue(counts);
+                    consumes.add(cons);
 
                 }
 
@@ -420,12 +430,6 @@ public class UserController {
 //        }
 
 
-
-
-
-
-
-
         rs.setData(survey);
         rs.setCode(200);
         rs.setMsg("ok");
@@ -436,7 +440,6 @@ public class UserController {
     }
 
 
-
     @GetMapping("/major")
     public Result getMajor() throws Exception {
         Result rs = new Result<>(500, "error");
@@ -444,7 +447,7 @@ public class UserController {
         queryWrapper.select("DISTINCT stu_major");
         List<StuInfo> majors = stuInfoService.list(queryWrapper);
 
-        List<String> res=majors.stream().map(v->v.getStuMajor()).collect(Collectors.toList());
+        List<String> res = majors.stream().map(v -> v.getStuMajor()).collect(Collectors.toList());
 
         rs.setData(res);
 
@@ -455,24 +458,141 @@ public class UserController {
     }
 
 
+    @GetMapping("/score")
+    public Result getScore(@RequestParam(required = true, value = "stuId") String stuId) {
+        Result rs = new Result<>(500, "error");
 
+        Score score = new Score();
 
+        StuInfo stuInfo = stuInfoService.getById(stuId);
+        BeanUtils.copyProperties(stuInfo, score);
+        score.setStuId(stuInfo.getStuNo());
+        //计算该同学的总成绩
+        QueryWrapper<StuScore> totalScoreWrapper = new QueryWrapper<>();
+        totalScoreWrapper.eq("stu_no", stuId);
+        //该同学的成绩记录
+        List<StuScore> list = stuScoreService.list(totalScoreWrapper);
+        //该同学的总gpa
+        double aveGPAScore = list.stream()
+                .mapToDouble(StuScore::getStuGpa)
+                .sum() / list.size();
+        //封装平均gpa
+        score.setAveGpaScore(aveGPAScore);
 
+        //该同学的总成绩
+        double totalScore = list.stream()
+                .map(v -> v.getOneScore() + v.getTwoScore() + v.getThreeScore())
+                .mapToDouble(v -> v)
+                .sum();
+        score.setTotalScore(totalScore);
+        //封装平均综合成绩
+        double aveScore = totalScore / list.size() / 3;
+        score.setAveScore(aveScore);
 
+        /**
+         * 计算该同学的总成绩超过了多少人
+         */
+        List<StuScore> stuNoDistinct = stuScoreService.getStuNoDistinct();
+        //所有同学的总成绩
+        List<Double> totalScoreList = new ArrayList<>();
+        //所有同学的平均成绩
+        List<Double> totalAveScoreList = new ArrayList<>();
 
+        ArrayList<Double> aveGPAList = new ArrayList<>();
 
+        stuNoDistinct.forEach(item -> {
+            QueryWrapper<StuScore> totalPercentWrapper = new QueryWrapper<>();
+            totalPercentWrapper.eq("stu_no", item.getStuNo());
+            List<StuScore> scoreList = stuScoreService.list(totalPercentWrapper);
+            //一个人的总成绩
+            double oneTotalScore = scoreList.stream()
+                    .map(v -> v.getOneScore() + v.getTwoScore() + v.getThreeScore())
+                    .mapToDouble(v -> v)
+                    .sum();
+            //一个人的平均成绩
+            double oneAveScore = oneTotalScore / scoreList.size() / 3;
 
+            //一个人的平均gpa
+            double oneAveGPA = list.stream()
+                    .mapToDouble(StuScore::getStuGpa)
+                    .sum() / scoreList.size();
 
+            aveGPAList.add(oneAveGPA);
+            totalScoreList.add(oneTotalScore);
+            totalAveScoreList.add(oneAveScore);
 
-    public Result getScore(@RequestParam String stuId){
+        });
+        double totalPercentCount = 0;
+        double avePercentCount = 0;
+        double aveGPAPercentCount = 0;
+        for (int i = 0; i < totalScoreList.size(); i++) {
+            if (totalScore > totalScoreList.get(i)) {
+                totalPercentCount++;
+            }
+            if (aveScore > totalAveScoreList.get(i)) {
+                avePercentCount++;
+            }
+            if (aveGPAScore > aveGPAList.get(i)) {
+                aveGPAPercentCount++;
+            }
 
-        Result rs=new Result();
+        }
+        log.error("totalPercentCount--->{},totalScoreList---->{}", totalPercentCount, totalScoreList.size());
+        //总成绩超过了多少人(百分比)
+        double totalPercent = totalPercentCount / totalScoreList.size() * 100;
+        score.setTotalPercent(totalPercent);
 
+        log.error("avePercentCount--->{},totalAveScoreList--->{}", avePercentCount, totalAveScoreList.size());
+        //平均成绩超过了多少人(百分比)
+        double avePercent = avePercentCount / totalAveScoreList.size() * 100;
+        score.setAvePercent(avePercent);
+        //平均GPA超过了多少人(百分比)
+        double aveGPAPercent = aveGPAPercentCount / aveGPAList.size() * 100;
+        log.error("aveGPAPercentCount--->{},aveGPAList--->{}", aveGPAPercentCount, aveGPAList.size());
+        score.setAveGpaPercent(aveGPAPercent);
+
+        /**
+         * 封装成绩最好的三门课
+         */
+        ArrayList<GoodGrade> gradeList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            gradeList.add(new GoodGrade(list.get(i).getOneCourse(), list.get(i).getOneScore()));
+            gradeList.add(new GoodGrade(list.get(i).getTwoCourse(), list.get(i).getTwoScore()));
+            gradeList.add(new GoodGrade(list.get(i).getThreeCourse(), list.get(i).getThreeScore()));
+        }
+
+        //根据成绩降序排序--牛的一！！
+        List<GoodGrade> goodGrade = gradeList
+                .stream()
+                .sorted(Comparator.comparing(GoodGrade::getScore).reversed())
+                .limit(3)
+                .collect(Collectors.toList());
+
+        score.setGoodGradeList(goodGrade);
+
+        ArrayList<GPAList> gpaList = new ArrayList<>();
+
+        for (StuScore stuScore : list) {
+            double stuGpa = stuScore.getStuGpa();
+            String year = stuScore.getStuYear();
+            if (stuScore.getStuTerm().equals("1")) {
+                year = year + ".3";
+            } else if (stuScore.getStuTerm().equals("2")) {
+                year = year + ".9";
+            }
+
+            gpaList.add(new GPAList(year, stuGpa));
+        }
+
+        score.setGpaList(gpaList);
+
+        rs.setMsg("ok");
+        rs.setCode(200);
+        rs.setData(score);
 
         return rs;
 
     }
-
 
 
 }

@@ -42,9 +42,9 @@ public class StuScoreServiceImpl extends ServiceImpl<StuScoreMapper, StuScore> i
 //        });
         AtomicReference<Double> totalScore = new AtomicReference<>((double) 0);
         list.forEach(item -> {
-            totalScore.updateAndGet(v -> new Double((double) (v + Double.parseDouble(item.getOneScore()))));
-            totalScore.updateAndGet(v -> new Double((double) (v + Double.parseDouble(item.getTwoScore()))));
-            totalScore.updateAndGet(v -> new Double((double) (v + Double.parseDouble(item.getThreeScore()))));
+            totalScore.updateAndGet(v -> new Double((double) (v + item.getOneScore())));
+            totalScore.updateAndGet(v -> new Double((double) (v + item.getTwoScore())));
+            totalScore.updateAndGet(v -> new Double((double) (v + item.getThreeScore())));
         });
 
         int listSize = list.size() * 3;

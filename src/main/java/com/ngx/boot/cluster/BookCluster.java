@@ -18,8 +18,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author : 牛庚新
- * @date :
+ * 返回给前端一个comment列表
  */
 @Slf4j
 @Component

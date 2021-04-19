@@ -22,15 +22,15 @@ public class StuScore {
     // 第一门课程
     private String oneCourse;
     // 第一门课程的分数
-    private String oneScore;
+    private Double oneScore;
     // 第二门课程
     private String twoCourse;
     // 第二门课程的分数
-    private String twoScore;
+    private Double twoScore;
     // 第三门课程
     private String threeCourse;
     // 第三门课程的分数
-    private String threeScore;
+    private Double threeScore;
     // 学年
     private String stuYear;
     // 学期

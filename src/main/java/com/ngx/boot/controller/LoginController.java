@@ -1,5 +1,6 @@
 package com.ngx.boot.controller;
 
+import com.ngx.boot.utils.TokenUtil;
 import com.ngx.boot.vo.LoginUser;
 import com.ngx.boot.vo.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +15,8 @@ public class LoginController {
     public Result login(@RequestBody LoginUser student){
         Result rs = new Result<>(200, "ok");
         log.error("---------------------------------------->"+student.toString());
-
-
+        String token = TokenUtil.sign(student.getUsername(), student.getPassword());
+        rs.setData(token);
         return rs;
 
     }
