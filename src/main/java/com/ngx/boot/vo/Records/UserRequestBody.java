@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class StuInfoss {
+public class UserRequestBody {
 
     @NotNull
     private Integer current;

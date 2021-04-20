@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
+import com.ngx.boot.utils.CommonUtils;
+import com.ngx.boot.vo.ConsumeFrequencyAndData;
+import com.ngx.boot.vo.Records.Record;
+import com.ngx.boot.vo.Records.UserRequestBody;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
@@ -588,7 +592,7 @@ public class UserController {
 
     //学生概况
     @PostMapping("/info")
-    public Result getCondition(@RequestBody StuInfoss stuInfoss) {
+    public Result getCondition(@RequestBody UserRequestBody stuInfoss) {
 
         Result rs = new Result<>(500, "error");
 
@@ -622,18 +626,16 @@ public class UserController {
 
 
     @PostMapping("/list")
-    public Result getList(@RequestParam("current") Integer current, @RequestParam("pagesize") Integer pagesize,
-                          @RequestParam(value = "major", required = false) String major,
-                          @RequestParam(value = "stuId", required = false) String stuId) {
+    public Result getList(@RequestBody UserRequestBody requestBody) {
         Result rs = new Result<>(500, "error");
 
-        Page<StuInfo> page = new Page<>(current, pagesize);
+        Page<StuInfo> page = new Page<>(requestBody.getCurrent(), requestBody.getPageSize());
         QueryWrapper<StuInfo> wrapper = new QueryWrapper<>();
-        if (major != null && !major.equals("")) {
-            wrapper.eq("stu_major", major);
+        if (requestBody.getMajor() != null && !requestBody.getMajor().equals("")) {
+            wrapper.eq("stu_major", requestBody.getMajor());
         }
-        if (stuId != null && !stuId.equals("")) {
-            wrapper.eq("stu_no", stuId);
+        if (requestBody.getStuId() != null && !requestBody.getStuId().equals("")) {
+            wrapper.eq("stu_no", requestBody.getStuId());
         }
 
         Page stuInfoPage = stuInfoService.page(page, wrapper);
