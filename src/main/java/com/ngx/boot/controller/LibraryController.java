@@ -7,9 +7,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.BookInfo;
 import com.ngx.boot.bean.StuBorrow;
 import com.ngx.boot.bean.StuCheck;
-import com.ngx.boot.bean.StuInfo;
-import com.ngx.boot.service.*;
-import com.ngx.boot.vo.Records.Record;
+import com.ngx.boot.service.BookInfoService;
+import com.ngx.boot.service.StuBorrowService;
+import com.ngx.boot.service.StuCheckService;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.library.lib.Frequents;
 import com.ngx.boot.vo.library.lib.Libcheck;
@@ -40,17 +40,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/lib")
+@RequestMapping("/lib")
 public class LibraryController {
-
-    @Autowired
-    private StuInfoService stuInfoService;
-
-    @Autowired
-    private StuScoreService stuScoreService;
-
-    @Autowired
-    private StuConsumeService stuConsumeService;
 
     @Autowired
     private StuCheckService stuCheckService;
@@ -60,7 +51,6 @@ public class LibraryController {
 
     @Autowired
     private StuBorrowService stuBorrowService;
-
 
 
     @GetMapping("/info")
@@ -94,7 +84,7 @@ public class LibraryController {
             }
 
         }
-        if(year!=null && month!=null){
+        if(year!=null && month!=null && !month.equals("")){
 
             for (int j = 2017; j < 2020; j++) {
                 if(Integer.parseInt(year)==j){
@@ -166,7 +156,7 @@ public class LibraryController {
 
 
         }
-        if(year!=null&&month!=null){
+        if(year!=null&&month!=null && !month.equals("")){
 
             for (int j = 2017; j < 2020; j++) {
                 if(Integer.parseInt(year)==j){
@@ -349,7 +339,6 @@ public class LibraryController {
         for (int a = 2017; a < 2020; a++) {
             if (Integer.parseInt(year) == a) {
                 for (int b = 1; b < 13; b++) {
-
                         QueryWrapper Wrapper3 = new QueryWrapper();
                         Wrapper3.eq("stu_year", a);
                         Wrapper3.eq("stu_month",b);
@@ -375,8 +364,29 @@ public class LibraryController {
     }
 
 
+    @GetMapping("/book")
+    public Result getBookCommentByPage(
+            @RequestParam(value = "year",required = false) String year,
+            @RequestParam(value = "month",required = false) String month,
+            //当前页
+            @RequestParam("current") Integer current,
+            //一页有多少条数据
+            @RequestParam("pageSize") Integer pageSize){
+        Result rs = new Result<>(500, "error");
+
+        Page<BookInfo> page = new Page<>(current,pageSize);
+        Page<BookInfo> bookInfoPage = bookInfoService.page(page);
+
+        if (bookInfoPage.getSize()>=0){
+            rs.setData(bookInfoPage);
+            rs.setCode(200);
+            rs.setMsg("ok");
+        }
+
+        return rs;
 
 
+    }
 
 
 

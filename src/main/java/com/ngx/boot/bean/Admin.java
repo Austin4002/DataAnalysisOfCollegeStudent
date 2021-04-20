@@ -12,6 +12,8 @@ public class Admin {
     private String name;
     // 密码
     private String password;
+    // 头像
+    private String avatar;
     // 数据更新时间
     private Date updatetime;
 

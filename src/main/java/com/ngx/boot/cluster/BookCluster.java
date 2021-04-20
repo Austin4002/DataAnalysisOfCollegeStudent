@@ -1,9 +1,9 @@
 package com.ngx.boot.cluster;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.ngx.boot.algorithm.mapred.ReadHDFS;
 import com.ngx.boot.algorithm.mapred.Recommend;
 import com.ngx.boot.bean.BookInfo;
-import com.ngx.boot.bean.StuBorrow;
 import com.ngx.boot.service.BookInfoService;
 import com.ngx.boot.service.StuBorrowService;
 import com.ngx.boot.vo.Comment;
@@ -11,9 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,20 +27,21 @@ public class BookCluster {
     @Autowired
     private BookInfoService bookInfoService;
 
-    public List<Comment> getBookComment() throws Exception {
-        List<StuBorrow> list = stuBorrowService.list();
-        BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/bookComment.txt"));
-        list.forEach(item->{
-            String str = item.getStuNo()+"\t"+item.getBookNo()+"    "+(int) item.getBorTime();
-            try {
-                bw.write(str);
-                bw.newLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        });
-        bw.close();
+//    @PostConstruct
+    public void getBookComment() throws Exception {
+//        List<StuBorrow> list = stuBorrowService.list();
+//        BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/resources/bookComment.txt"));
+//        list.forEach(item->{
+//            String str = item.getStuNo()+"\t"+item.getBookNo()+"    "+(int) item.getBorTime();
+//            try {
+//                bw.write(str);
+//                bw.newLine();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        });
+//        bw.close();
 
         Recommend.mapred("src/main/resources/bookComment.txt");
         ArrayList<String> arrayList = ReadHDFS.getStringByTXT();
@@ -75,8 +73,15 @@ public class BookCluster {
 
             result.put(entry.getKey(), avg);
         }
+        //更新数据库中的
+        bookComment.forEach(item->{
+            UpdateWrapper<BookInfo> wrapper = new UpdateWrapper<>();
+            wrapper.eq("book_no",item.getBookId());
+            wrapper.set("recommend",item.getRecommend());
+            bookInfoService.update(wrapper);
+        });
 
-        return bookComment;
+//        return bookComment;
 
 //        for(String key : result.keySet()){
 //            double value = result.get(key);

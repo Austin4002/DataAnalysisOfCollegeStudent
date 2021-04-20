@@ -31,7 +31,7 @@ public class Score {
     //平均gpa超过了多少人，百分数
     private Double aveGpaPercent;
     //成绩好的三门课
-    private List<GoodGrade> goodGradeList;
+    private List<GoodGrade> goodGrade;
     //gpa列表
     private List<GPAList> gpaList;
 
