@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
+import com.ngx.boot.vo.ConsumeFrequencyAndData;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
@@ -604,7 +605,7 @@ public class UserController {
 
         //分页
         Page<StuInfo> page = new Page<StuInfo>(current, pageSize);
-        Page<StuInfo> page1 = stuInfoService.page(page,queryWrapper);
+        Page<StuInfo> page1 = stuInfoService.page(page, queryWrapper);
 
         rs.setData(page1);
         rs.setMsg("ok");
@@ -616,12 +617,44 @@ public class UserController {
 
 
     @PostMapping("/list")
-    public Result getList(@RequestParam("current") String current,@RequestParam("pagesize") String pagesize,
-                          @RequestParam(value = "major",required = false) String major,
-                          @RequestParam(value = "stuId",required = false) String stuId){
+    public Result getList(@RequestParam("current") Integer current, @RequestParam("pagesize") Integer pagesize,
+                          @RequestParam(value = "major", required = false) String major,
+                          @RequestParam(value = "stuId", required = false) String stuId) {
         Result rs = new Result<>(500, "error");
 
-//        rs.setData(current);
+        Page<StuInfo> page = new Page<>(current, pagesize);
+
+        QueryWrapper<StuInfo> wrapper = new QueryWrapper<>();
+        if (major != null && major.equals("")) {
+            wrapper.eq("major", major);
+        }
+        if (stuId != null && stuId.equals("")) {
+            wrapper.eq("stuId", stuId);
+        }
+
+
+        Page stuInfoPage = stuInfoService.page(page, wrapper);
+        List<StuInfo> records = stuInfoPage.getRecords();
+        List<ConsumeFrequencyAndData> realRecord = new ArrayList<>();
+        for (StuInfo record : records) {
+            ConsumeFrequencyAndData frequencyAndData = new ConsumeFrequencyAndData();
+            frequencyAndData.setStuId(record.getStuNo());
+            frequencyAndData.setStuGender(record.getStuSex());
+            BeanUtils.copyProperties(record, frequencyAndData);
+
+//            frequencyAndData.setStuAve();
+
+
+
+            realRecord.add(frequencyAndData);
+        }
+        realRecord.forEach(System.out::println);
+
+
+        stuInfoPage.setRecords(realRecord);
+        rs.setMsg("ok");
+        rs.setCode(200);
+        rs.setData(stuInfoPage);
         return rs;
 
     }
