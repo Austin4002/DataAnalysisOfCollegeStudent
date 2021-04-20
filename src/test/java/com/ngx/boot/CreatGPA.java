@@ -5,6 +5,7 @@ import com.ngx.boot.service.StuScoreService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class CreatGPA {
 
     // 慎用！！！
     @Test
-   // @Transactional
+    @Transactional
     public void updateGPA(){
 
         List<StuScore> list = stuScoreService.list();

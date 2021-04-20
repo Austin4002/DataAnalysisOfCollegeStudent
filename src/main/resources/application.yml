@@ -4,20 +4,21 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/analysisdata?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    #url: jdbc:mysql://localhost:3306/analysisdata?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    url: jdbc:mysql://47.94.5.132:3306/analysisdtata?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
   main:
     banner-mode: off
 
 server:
   servlet:
     context-path: /
-  port: 8080
+  port: 8989
 
 mybatis-plus:
   global-config:
     banner: false
   configuration:
-    # 开启下划线转驼峰命名规则
+    # 开启下划线转驼峰
     map-underscore-to-camel-case: true
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:/mapper/**/*.xml

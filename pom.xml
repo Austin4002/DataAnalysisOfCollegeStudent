@@ -15,8 +15,6 @@
     <description>DataAnalysisOfCollegeStudent</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
 
         <scala.version>2.11.7</scala.version>
         <spark.version>2.2.2</spark.version>
@@ -113,11 +111,6 @@
             <version>1.2.1.spark2</version>
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -232,10 +225,10 @@
             <version>8.1.8</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--        </dependency>-->
         <!-- <dependency>
                  <groupId>org.apache.sqoop</groupId>
                  <artifactId>sqoop-client</artifactId>
