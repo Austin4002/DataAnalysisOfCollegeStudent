@@ -612,8 +612,7 @@ public class UserController {
 
         //分页
         Page<StuInfo> page = new Page<StuInfo>(stuInfoss.getCurrent(), stuInfoss.getPageSize());
-        Page<StuInfo> page1 = stuInfoService.page(page,queryWrapper);
-
+        Page<StuInfo> page1 = stuInfoService.page(page, queryWrapper);
 
 
         rs.setData(page1);
@@ -644,7 +643,6 @@ public class UserController {
         //从小到大排序的
         List<Integer> clusterCenter = CommonUtils.getClusterCenter("consumeCenter.txt");
 
-
         for (StuInfo record : records) {
             ConsumeFrequencyAndData frequencyAndData = new ConsumeFrequencyAndData();
             frequencyAndData.setStuId(record.getStuNo());
@@ -667,12 +665,14 @@ public class UserController {
             int peak = amount_data.stream().mapToInt(v -> v).max().getAsInt();
             // 消费金额平均值
             double stuAve = amount_data.stream().mapToDouble(v -> v).average().getAsDouble();
-            // 消费频次最大值
-            int fre_bound_max = fre_data.stream().mapToInt(v->v).max().getAsInt();
-            // 消费频次最小值
-            int fre_bound_min = fre_data.stream().mapToInt(v->v).min().getAsInt();
+            // 消费频次平均值
+            double fre_bound_max = fre_data.stream().mapToInt(v -> v).average().getAsDouble();
+            // 消费频次平均值
+            // double fre_bound_min = fre_data.stream().mapToInt(v->v).average().getAsDouble();
+
+            //别问我为什么算两遍，因为后面需求改了
             frequencyAndData.setFre_bound_max(fre_bound_max);
-            frequencyAndData.setFre_bound_min(fre_bound_min);
+            frequencyAndData.setFre_bound_min(fre_bound_max);
 
             frequencyAndData.setStuAve(stuAve);
             frequencyAndData.setPeak(peak);
@@ -682,8 +682,6 @@ public class UserController {
             frequencyAndData.setAmount_bound_max(clusterCenter.get(1));
             realRecord.add(frequencyAndData);
         }
-//        realRecord.forEach(System.out::println);
-
 
         stuInfoPage.setRecords(realRecord);
         rs.setMsg("ok");

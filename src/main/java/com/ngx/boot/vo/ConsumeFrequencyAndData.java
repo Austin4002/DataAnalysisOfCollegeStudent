@@ -20,12 +20,14 @@ public class ConsumeFrequencyAndData {
     private String stuMajor;
 
     private List<Integer> fre_data;
-    // 消费频次最大值
-    private Integer fre_bound_max;
-    // 消费频次最小值
-    private Integer fre_bound_min;
+    // 消费频次平均值
+    private Double fre_bound_max;
+    // 消费频次平均值
+    private Double fre_bound_min;
     private List<Integer> amount_data;
+    // 消费金额聚类中心点大的值
     private Integer amount_bound_max;
+    // 消费金额聚类中心点小的值
     private Integer amount_bound_min;
     // 消费峰值
     private Integer peak;
