@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
 import com.ngx.boot.vo.Records.Record;
-import com.ngx.boot.vo.Records.Records;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
@@ -48,6 +47,7 @@ public class UserController {
 
     @Autowired
     private StuBorrowService stuBorrowService;
+
 
 
     @GetMapping("/user/portrait")
@@ -392,32 +392,32 @@ public class UserController {
             for (int j = 1; j < 3; j++) {
                 for (int k = 2016; k < 2020; k++) {
 
-                QueryWrapper Wrapper2 = new QueryWrapper();
-                Wrapper2.eq("stu_year",i);
-                Wrapper2.eq("stu_term",j);
-                Wrapper2.likeRight("stu_no",k);
-                List<StuBorrow> stuBor= stuBorrowService.list(Wrapper2);
-                //double countss = StuBorrow.stream().mapToInt(item -> (int) item.getb.sum();
+                    QueryWrapper Wrapper2 = new QueryWrapper();
+                    Wrapper2.eq("stu_year", i);
+                    Wrapper2.eq("stu_term", j);
+                    Wrapper2.likeRight("stu_no", k);
+                    List<StuBorrow> stuBor = stuBorrowService.list(Wrapper2);
+                    //double countss = StuBorrow.stream().mapToInt(item -> (int) item.getb.sum();
                     double countss = stuBor.stream().mapToDouble(StuBorrow::getBorTime).sum();
                     String grad = null;
-                if(k==2016){
-                    grad="大四";
-                }
-                if(k==2017){
-                    grad="大三";
-                }
-                if(k==2018){
-                    grad="大二";
-                }
-                if(k==2019){
-                    grad="大一";
-                }
-                String times =i+"/"+j;
-                Reading read = new Reading();
-                read.setTerm(times);
-                read.setGrade(grad);
-                read.setReading(countss);
-                readings.add(read);
+                    if (k == 2016) {
+                        grad = "大四";
+                    }
+                    if (k == 2017) {
+                        grad = "大三";
+                    }
+                    if (k == 2018) {
+                        grad = "大二";
+                    }
+                    if (k == 2019) {
+                        grad = "大一";
+                    }
+                    String times = i + "/" + j;
+                    Reading read = new Reading();
+                    read.setTerm(times);
+                    read.setGrade(grad);
+                    read.setReading(countss);
+                    readings.add(read);
                 }
 
             }
@@ -591,47 +591,29 @@ public class UserController {
     }
 
 
-
     //学生概况
     @PostMapping("/user/info")
-    public Result getCondition(@RequestParam Integer current,@RequestParam String major,@RequestParam Integer pageSize,@RequestParam String stuId) {
+    public Result getCondition(@RequestParam("current") Integer current,
+                               @RequestParam("major") String major,
+                               @RequestParam("pageSize") Integer pageSize,
+                               @RequestParam(value = "stuId", required = false) String stuId) {
 
         Result rs = new Result<>(500, "error");
 
-
-        List<Record> records = new ArrayList<>();
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("stu_major",major);
-        if(stuId!=null && !stuId.equals("")){
-            queryWrapper.eq("stu_no",stuId);
+        List<StuInfo> records = new ArrayList<>();
+        QueryWrapper<StuInfo> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("stu_major", major);
+        if (stuId != null && !stuId.equals("")) {
+            queryWrapper.eq("stu_no", stuId);
         }
-        List<StuInfo> stuInfos = stuInfoService.list(queryWrapper);
-        stuInfos.forEach(item->{
-            Record record = new Record();
-            record.setStuId(item.getStuNo());
-            record.setStuName(item.getStuName());
-            record.setStuGender(item.getStuSex());
-            record.setStuGrade(item.getStuGrade());
-            record.setStuMajor(item.getStuMajor());
-            String behavor[] = item.getBehavior().split("-");
-            String consume[] = item.getConsume().split("-");
-            String learn[] = item.getLearn().split("-");
-            record.setBehavior(behavor);
-            record.setConsume(consume);
-            record.setStudy(learn);
-            records.add(record);
-        });
-
 
         //分页
-        Page<Record> page = new Page<Record>(current,pageSize);
-       // Page<Record> page1 = Record.page(page);
+        Page<StuInfo> page = new Page<StuInfo>(current, pageSize);
+        Page<StuInfo> page1 = stuInfoService.page(page,queryWrapper);
 
-
+        rs.setData(page1);
         rs.setMsg("ok");
         rs.setCode(200);
-        //rs.setData(page1);
-        rs.setData(records);
 
         return rs;
 
