@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
+import com.ngx.boot.vo.Records.Record;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.stringtemplate.v4.ST;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -43,6 +45,9 @@ public class UserController {
 
     @Autowired
     private StuBorrowService stuBorrowService;
+
+    @Autowired
+    private RecordService recordService;
 
 
     @GetMapping("/portrait")
@@ -587,24 +592,32 @@ public class UserController {
 
 
     //学生概况
-    @PostMapping("/user/info")
+    @PostMapping("/info")
     public Result getCondition(@RequestParam("current") Integer current,
-                               @RequestParam("major") String major,
+                               @RequestParam(value = "major" , required = false) String major,
                                @RequestParam("pageSize") Integer pageSize,
                                @RequestParam(value = "stuId", required = false) String stuId) {
 
         Result rs = new Result<>(500, "error");
 
-        List<StuInfo> records = new ArrayList<>();
+        List<Record> records = new ArrayList<>();
         QueryWrapper<StuInfo> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("stu_major", major);
+        if (stuId != null && !stuId.equals("") && major != null && !major.equals("")) {
+            queryWrapper.eq("stu_major", major);
+            queryWrapper.eq("stu_no", stuId);
+        }
         if (stuId != null && !stuId.equals("")) {
             queryWrapper.eq("stu_no", stuId);
+        }
+        if (major != null && !major.equals("")) {
+            queryWrapper.eq("stu_major", major);
         }
 
         //分页
         Page<StuInfo> page = new Page<StuInfo>(current, pageSize);
         Page<StuInfo> page1 = stuInfoService.page(page,queryWrapper);
+
+
 
         rs.setData(page1);
         rs.setMsg("ok");
