@@ -33,6 +33,9 @@ public class AlgorithmTest {
     @Autowired
     private BookInfoService bookInfoService;
 
+    @Autowired
+    private StuInfoService stuInfoService;
+
     @Test
     public void generateFile() throws IOException {
 
