@@ -61,4 +61,13 @@ public class StuConsumeServiceImpl extends ServiceImpl<StuConsumeMapper, StuCons
         return amountByRestaurantAndWindow;
     }
 
+    @Override
+    public Integer getAmountSumByIdAndMonth(String stuNo, int month) {
+        Integer amountSumByIdAndMonth = stuConsumeMapper.getAmountSumByIdAndMonth(stuNo,month);
+        if (amountSumByIdAndMonth ==null){
+            return 0;
+        }
+        return amountSumByIdAndMonth;
+    }
+
 }

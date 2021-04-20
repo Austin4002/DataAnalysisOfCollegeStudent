@@ -17,4 +17,6 @@ public interface StuConsumeMapper extends BaseMapper<StuConsume> {
     Integer getAmountByRestaurant(String year, String month,Integer restaurantNumber);
 
     Integer getAmountByRestaurantAndWindow(String year, String month, Integer restaurantNumber, Integer windowNumber);
+
+    Integer getAmountSumByIdAndMonth(String stuNo, int month);
 }

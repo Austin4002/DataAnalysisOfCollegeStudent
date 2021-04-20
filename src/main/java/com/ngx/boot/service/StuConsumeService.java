@@ -18,4 +18,6 @@ public interface StuConsumeService extends IService<StuConsume> {
     Integer getAmountByRestaurant(String year, String month,Integer restaurantNumber);
 
     Integer getAmountByRestaurantAndWindow(String year, String month, Integer restaurantNumber, Integer windowNumber);
+
+    Integer getAmountSumByIdAndMonth(String stuNo, int month);
 }

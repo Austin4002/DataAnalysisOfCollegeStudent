@@ -23,4 +23,7 @@
             and con_month = #{month}
         </if>
     </select>
+    <select id="getAmountSumByIdAndMonth" resultType="java.lang.Integer">
+        select MAX(con_money) from stu_consume where stu_no = #{stuNo} and con_month = #{month}
+    </select>
 </mapper>

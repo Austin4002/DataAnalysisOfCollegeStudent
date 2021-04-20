@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
+import com.ngx.boot.utils.CommonUtils;
 import com.ngx.boot.vo.ConsumeFrequencyAndData;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
@@ -588,9 +589,9 @@ public class UserController {
 
 
     //学生概况
-    @PostMapping("/user/info")
+    @PostMapping("/info")
     public Result getCondition(@RequestParam("current") Integer current,
-                               @RequestParam("major") String major,
+                               @RequestParam(value = "major", required = false) String major,
                                @RequestParam("pageSize") Integer pageSize,
                                @RequestParam(value = "stuId", required = false) String stuId) {
 
@@ -598,9 +599,15 @@ public class UserController {
 
         List<StuInfo> records = new ArrayList<>();
         QueryWrapper<StuInfo> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("stu_major", major);
+        if (stuId != null && !stuId.equals("") && major != null && !major.equals("")) {
+            queryWrapper.eq("stu_major", major);
+            queryWrapper.eq("stu_no", stuId);
+        }
         if (stuId != null && !stuId.equals("")) {
             queryWrapper.eq("stu_no", stuId);
+        }
+        if (major != null && !major.equals("")) {
+            queryWrapper.eq("stu_major", major);
         }
 
         //分页
@@ -623,32 +630,59 @@ public class UserController {
         Result rs = new Result<>(500, "error");
 
         Page<StuInfo> page = new Page<>(current, pagesize);
-
         QueryWrapper<StuInfo> wrapper = new QueryWrapper<>();
-        if (major != null && major.equals("")) {
-            wrapper.eq("major", major);
+        if (major != null && !major.equals("")) {
+            wrapper.eq("stu_major", major);
         }
-        if (stuId != null && stuId.equals("")) {
-            wrapper.eq("stuId", stuId);
+        if (stuId != null && !stuId.equals("")) {
+            wrapper.eq("stu_no", stuId);
         }
-
 
         Page stuInfoPage = stuInfoService.page(page, wrapper);
         List<StuInfo> records = stuInfoPage.getRecords();
         List<ConsumeFrequencyAndData> realRecord = new ArrayList<>();
+        //从小到大排序的
+        List<Integer> clusterCenter = CommonUtils.getClusterCenter("consumeCenter.txt");
+
+
         for (StuInfo record : records) {
             ConsumeFrequencyAndData frequencyAndData = new ConsumeFrequencyAndData();
             frequencyAndData.setStuId(record.getStuNo());
             frequencyAndData.setStuGender(record.getStuSex());
             BeanUtils.copyProperties(record, frequencyAndData);
+            //根据学号，查询每个月的消费次数，多少条记录
+            List<Integer> fre_data = new ArrayList<>();
+            //根据学号，查询每个月的消费金额
+            List<Integer> amount_data = new ArrayList<>();
+            for (int i = 1; i <= 12; i++) {
+                QueryWrapper<StuConsume> queryWrapper = new QueryWrapper<>();
+                queryWrapper.eq("stu_no", record.getStuNo());
+                queryWrapper.eq("con_month", i);
+                int frequentCount = stuConsumeService.count(queryWrapper);
+                int amount = stuConsumeService.getAmountSumByIdAndMonth(record.getStuNo(), i);
+                fre_data.add(frequentCount);
+                amount_data.add(amount);
+            }
+            // 消费峰值
+            int peak = amount_data.stream().mapToInt(v -> v).max().getAsInt();
+            // 消费金额平均值
+            double stuAve = amount_data.stream().mapToDouble(v -> v).average().getAsDouble();
+            // 消费频次最大值
+            int fre_bound_max = fre_data.stream().mapToInt(v->v).max().getAsInt();
+            // 消费频次最小值
+            int fre_bound_min = fre_data.stream().mapToInt(v->v).min().getAsInt();
+            frequencyAndData.setFre_bound_max(fre_bound_max);
+            frequencyAndData.setFre_bound_min(fre_bound_min);
 
-//            frequencyAndData.setStuAve();
-
-
-
+            frequencyAndData.setStuAve(stuAve);
+            frequencyAndData.setPeak(peak);
+            frequencyAndData.setFre_data(fre_data);
+            frequencyAndData.setAmount_data(amount_data);
+            frequencyAndData.setAmount_bound_min(clusterCenter.get(0));
+            frequencyAndData.setAmount_bound_max(clusterCenter.get(1));
             realRecord.add(frequencyAndData);
         }
-        realRecord.forEach(System.out::println);
+//        realRecord.forEach(System.out::println);
 
 
         stuInfoPage.setRecords(realRecord);
