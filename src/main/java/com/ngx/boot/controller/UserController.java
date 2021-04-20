@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ngx.boot.bean.*;
 import com.ngx.boot.service.*;
 import com.ngx.boot.vo.Records.Record;
+import com.ngx.boot.vo.Records.StuInfoss;
 import com.ngx.boot.vo.Result;
 import com.ngx.boot.vo.portrait.TreeMap;
 import com.ngx.boot.vo.portrait.*;
@@ -593,28 +594,26 @@ public class UserController {
 
     //学生概况
     @PostMapping("/info")
-    public Result getCondition(@RequestParam("current") Integer current,
-                               @RequestParam(value = "major" , required = false) String major,
-                               @RequestParam("pageSize") Integer pageSize,
-                               @RequestParam(value = "stuId", required = false) String stuId) {
+    public Result getCondition(@RequestBody StuInfoss stuInfoss) {
 
         Result rs = new Result<>(500, "error");
 
         List<Record> records = new ArrayList<>();
         QueryWrapper<StuInfo> queryWrapper = new QueryWrapper();
-        if (stuId != null && !stuId.equals("") && major != null && !major.equals("")) {
-            queryWrapper.eq("stu_major", major);
-            queryWrapper.eq("stu_no", stuId);
+
+        if (stuInfoss.getStuId() != null && !stuInfoss.getStuId().equals("") && stuInfoss.getMajor() != null && !stuInfoss.getMajor().equals("")) {
+            queryWrapper.eq("stu_major", stuInfoss.getMajor());
+            queryWrapper.eq("stu_no", stuInfoss.getStuId());
         }
-        if (stuId != null && !stuId.equals("")) {
-            queryWrapper.eq("stu_no", stuId);
+        if (stuInfoss.getStuId() != null && !stuInfoss.getStuId().equals("")) {
+            queryWrapper.eq("stu_no", stuInfoss.getStuId());
         }
-        if (major != null && !major.equals("")) {
-            queryWrapper.eq("stu_major", major);
+        if (stuInfoss.getMajor() != null && !stuInfoss.getMajor().equals("")) {
+            queryWrapper.eq("stu_major", stuInfoss.getMajor());
         }
 
         //分页
-        Page<StuInfo> page = new Page<StuInfo>(current, pageSize);
+        Page<StuInfo> page = new Page<StuInfo>(stuInfoss.getCurrent(), stuInfoss.getPageSize());
         Page<StuInfo> page1 = stuInfoService.page(page,queryWrapper);
 
 
