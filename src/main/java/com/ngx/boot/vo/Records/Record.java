@@ -1,9 +1,11 @@
 package com.ngx.boot.vo.Records;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Record {
 
 
@@ -24,8 +26,7 @@ public class Record {
     //学习特征
     private String[] study;
 
+    public Record() {
 
-
-
-
+    }
 }
