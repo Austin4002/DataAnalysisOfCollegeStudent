@@ -1,5 +1,6 @@
 package com.ngx.boot.excelTest;
 
+import com.ngx.boot.bean.StuConsume;
 import com.ngx.boot.bean.StuInfo;
 import com.ngx.boot.bean.StuScore;
 import com.ngx.boot.excelOperation.CreateExcel;
@@ -68,6 +69,19 @@ public class ExcelTest {
                 }
 
                 //生成消费数据
+                //生成每一年的消费数据,一年有12个月，其中9-12月和3-6在学校，只需要生成这些月份的数据，按一个月30天来算,1天要吃3顿饭
+                for (int month = 3; month <=6 ; month++) {
+                    for (int day =1;day<=30;day++){
+                        for (int time = 7;time<=10;time=time+5){
+                            StuConsume consume = new StuConsume();
+                            BeanUtils.copyProperties(stuInfo,consume);
+                            consume.setConMoney(GeneratePerSonInfo.getMoney());
+                        }
+
+
+
+                    }
+                }
 
 
 
