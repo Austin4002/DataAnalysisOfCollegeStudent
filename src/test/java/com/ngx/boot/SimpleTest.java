@@ -23,8 +23,11 @@ public class SimpleTest {
 
     @Test
     public void test2(){
-        String major = GeneratePerSonInfo.getMajor();
-        System.out.println(major);
+//        for (int i = 0; i < 100; i++) {
+//            Integer major = GeneratePerSonInfo.getRestaurantNumber();
+//            System.out.println(major);
+//
+//        }
     }
 
 }

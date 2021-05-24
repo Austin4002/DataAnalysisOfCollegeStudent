@@ -213,12 +213,12 @@ public class GeneratePerSonInfo {
         return bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
-    public static Integer getRestaurantNumber(){
-       return new Random().nextInt(4);
+    public static Integer getRestaurantNumber() {
+        return new Random().nextInt(4) + 1;
     }
 
-    public static Integer getRestaurantWindowNumber(){
-        return new Random().nextInt(10);
+    public static Integer getRestaurantWindowNumber() {
+        return new Random().nextInt(10) + 1;
     }
 
 

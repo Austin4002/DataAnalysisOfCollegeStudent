@@ -253,6 +253,11 @@ public class UserController {
     }
 
 
+    /**
+     * 学院概况
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/survey")
     public Result getSurvey() throws Exception {
         Result rs = new Result<>(500, "error");
